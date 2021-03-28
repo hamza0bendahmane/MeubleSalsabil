@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "743898294468",
+    "firebase_url": "https://meubles-salsabil-default-rtdb.firebaseio.com",
+    "project_id": "meubles-salsabil",
+    "storage_bucket": "meubles-salsabil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743898294468:android:c6538893113e6ee6988191",
+        "android_client_info": {
+          "package_name": "com.createch.adminmeublessalsabil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743898294468-394kbbrihqoskhbkmatmgsi0c4ms19u2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVqnmf7FZzprE_yJYZK2UD2LANdeykhTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743898294468-394kbbrihqoskhbkmatmgsi0c4ms19u2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743898294468:android:6a20d046a09c2f83988191",
+        "android_client_info": {
+          "package_name": "com.createch.meublessalsabil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743898294468-394kbbrihqoskhbkmatmgsi0c4ms19u2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVqnmf7FZzprE_yJYZK2UD2LANdeykhTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743898294468-394kbbrihqoskhbkmatmgsi0c4ms19u2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
