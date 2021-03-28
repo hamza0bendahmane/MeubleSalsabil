@@ -3,4 +3,9 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="email">Email</string>
     <string name="button_connexion">Connecter</string>
+    <string name="creer_votre_compte">Créer votre compte</string>
+    <string name="suivant_button">Suivant</string>
+    <string name="phone">Téléphone</string>
+    <string name="creer_un_compte">Créer un compte</string>
+    <string name="nom">Nom</string>
 </resources>
