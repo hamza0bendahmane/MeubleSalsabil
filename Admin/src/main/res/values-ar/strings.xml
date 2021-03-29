@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Admin MS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="mot_de_passe">كلمة السر</string>
+    <string name="button_connexion">دخول</string>
+    <string name="language_updated">تم تحديث اللغة</string>
+    <string name="empty_email">الإيميل فارغ</string>
+    <string name="empty_password">كلمة السر فارغة</string>
+    <string name="error">خطأ</string>
+    <string name="login_successful">تم الدخول بنجاح</string>
+    <string name="please_wait">الرجاء الإنتظار</string>
+    <string name="not_admin">الدخول للأدمين فقط</string>
+</resources>

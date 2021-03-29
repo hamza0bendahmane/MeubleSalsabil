@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Admin App</string>
+    <string name="app_name">Admin MS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="mot_de_passe">Mot de Passe</string>
+    <string name="button_connexion">Connecter</string>
+    <string name="language_updated">la langue a été changé</string>
+    <string name="empty_email">adresse email vide</string>
+    <string name="empty_password">mot de passe vide</string>
+    <string name="error">erreure</string>
+    <string name="login_successful">connexion avec succé</string>
+    <string name="title_activity_admin_panel">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="please_wait">svp Attendez</string>
+    <string name="not_admin">الدخول للأدمين فقط</string>
 </resources>

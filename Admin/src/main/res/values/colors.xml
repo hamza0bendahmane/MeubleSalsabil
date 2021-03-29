@@ -5,6 +5,21 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <!-- custom palette-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gold">#B39A52</color>
+    <color name="dark_grey">#808080</color>
+    <color name="paper_beige">#DCBFA6</color>
+    <color name="bare_beige">#E8D3C9</color>
+    <color name="cosmic_latte">#FFF8E7</color>
+    <color name="unbleached_silk">#FFDDCA</color>
+    <color name="tuscan">#FAD6A5</color>
+    <color name="light_beige">#C8AD7F</color>
+    <color name="french_beige">#A67B5B</color>
+    <color name="mode_beige">#967117</color>
+    <color name="mesa_beige">#F6EBD3</color>
+    <color name="stonish_beige">#CCB49A</color>
+    <color name="termite_beige">#DDBB66</color>
+
 </resources>
