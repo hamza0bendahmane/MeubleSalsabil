@@ -13,7 +13,7 @@
     </style>
 
     <style name="text_font">
-        <item name="android:fontFamily">@font/cairo_french</item>
+        <item name="android:fontFamily">@font/ultra_arabic</item>
         <item name="android:textStyle">bold</item>
     </style>
 
