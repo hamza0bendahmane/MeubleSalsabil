@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/wlcm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="40dp"
+            android:text="المعلومات الشخصية "
+            android:textColor="@color/dark_grey"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="40dp"
+            android:minHeight="40dp"
+            android:src="@drawable/submit"
+            app:tint="@color/dark_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wlcm"
+            android:layout_marginVertical="40dp"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/name_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_login"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="9dp"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <ImageView
+                        android:id="@+id/im3"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/submit"
+                        app:tint="@color/gold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/change_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="9dp"
+                        android:layout_toEndOf="@id/im3"
+
+                        android:text="تعديل"
+                        android:textColor="@color/gold"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/imicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/name_product"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الإسم :"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/full_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="فلاتن الفلاني"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/edit_name_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imicon"
+                        android:layout_marginVertical="5dp"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/edittext_namee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="30dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="enter the name here"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittext_namee"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/cancel_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:backgroundTint="#FF5252"
+                                android:elevation="2dp"
+                                android:text="cancel"
+                                android:textColor="@color/white"
+
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/submit_name"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+                                android:elevation="2dp"
+                                android:text="submit"
+                                android:textColor="@color/white"
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp"
+
+                                />
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/browser_actions_bg_grey"
+
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/phone_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_login"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="9dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/infos_card">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <ImageView
+                        android:id="@+id/im2"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/submit"
+                        app:tint="@color/gold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/change_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="9dp"
+
+                        android:layout_toEndOf="@id/im2"
+                        android:text="تعديل"
+                        android:textColor="@color/gold"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                    <LinearLayout
+                        android:id="@+id/imicon1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/materials"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الهاتف :"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0556765919"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/edit_phone_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imicon1"
+                        android:layout_marginVertical="5dp"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/edittext_phonee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="30dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="enter the name here"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittext_phonee"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/cancel_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:backgroundTint="#FF5252"
+                                android:elevation="2dp"
+                                android:text="cancel"
+                                android:textColor="@color/white"
+
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/submit_phone"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+                                android:elevation="2dp"
+                                android:text="submit"
+                                android:textColor="@color/white"
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp"
+
+                                />
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/browser_actions_bg_grey"
+
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/pass_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_login"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="9dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/language_card">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <ImageView
+                        android:id="@+id/im1"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/submit"
+                        app:tint="@color/gold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/change_pass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="9dp"
+                        android:layout_toEndOf="@id/im1"
+                        android:text="تعديل"
+                        android:textColor="@color/gold"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                    <LinearLayout
+                        android:id="@+id/imicon0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/title_pass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="كلمة السر :"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*********"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/edit_pass_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imicon0"
+                        android:layout_marginVertical="5dp"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/old_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="enter the old pass"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_opass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/enter_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/old_pass"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="20dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="enter the new pass"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_pass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/verify_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/enter_pass"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="repeat the pass"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_vpass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/verify_pass"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="8dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/cancel_pass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:backgroundTint="#FF5252"
+                                android:elevation="2dp"
+                                android:text="cancel"
+                                android:textColor="@color/white"
+
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/submit_pass"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+                                android:elevation="2dp"
+                                android:text="submit"
+                                android:textColor="@color/white"
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp"
+
+                                />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/browser_actions_bg_grey"
+
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/adr_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_login"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="9dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/language_card">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <ImageView
+                        android:id="@+id/im4"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/submit"
+                        app:tint="@color/gold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/change_adr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="9dp"
+                        android:layout_toEndOf="@id/im4"
+                        android:text="تعديل"
+                        android:textColor="@color/gold"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                    <LinearLayout
+                        android:id="@+id/imicon4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/title_adr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="عنوان المحل :"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/adr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="el kléa , typaza"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/edit_adr_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imicon4"
+                        android:layout_marginVertical="5dp"
+                        android:visibility="gone">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/verify_passa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="repeat the pass"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_adr"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/verify_passa"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="8dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/cancel_adr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:backgroundTint="#FF5252"
+                                android:elevation="2dp"
+                                android:text="cancel"
+                                android:textColor="@color/white"
+
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/submit_adr"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+                                android:elevation="2dp"
+                                android:text="submit"
+                                android:textColor="@color/white"
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp"
+
+                                />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/browser_actions_bg_grey"
+
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/workh_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_login"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="9dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/language_card">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <ImageView
+                        android:id="@+id/im5"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/submit"
+                        app:tint="@color/gold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/change_workh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="9dp"
+                        android:layout_toEndOf="@id/im5"
+                        android:text="تعديل"
+                        android:textColor="@color/gold"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                    <LinearLayout
+                        android:id="@+id/imicon5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/title_workh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ساعات العمل :"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/workh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8 am - 10 pm"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/edit_workh_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imicon5"
+                        android:layout_marginVertical="5dp"
+                        android:visibility="gone">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/verify_passaa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/border_rec_corn"
+                            android:elevation="2dp"
+                            android:hint="repeat the pass"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_workh"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/verify_passaa"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="8dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/cancel_workh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:backgroundTint="#FF5252"
+                                android:elevation="2dp"
+                                android:text="cancel"
+                                android:textColor="@color/white"
+
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/submit_workh"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+                                android:elevation="2dp"
+                                android:text="submit"
+                                android:textColor="@color/white"
+                                android:translationZ="3dp"
+                                app:cornerRadius="10dp"
+
+                                />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/browser_actions_bg_grey"
+
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/logout_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_login"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="9dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/language_card">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+
+                    <LinearLayout
+                        android:id="@+id/imicon2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/title_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="البريد :"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="hemail@email.com"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

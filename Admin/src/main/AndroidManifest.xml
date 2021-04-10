@@ -9,11 +9,13 @@
         android:roundIcon="@drawable/splash_image"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeublesSalsabil">
+        <activity android:name=".Activity.EditProduct"></activity>
+        <activity android:name=".Activity.AddProduct" />
         <activity
-            android:name=".AdminPanelActivity"
-            android:label="@string/title_activity_admin_panel"></activity>
-        <activity android:name=".Login" />
-        <activity android:name=".Splash">
+            android:name=".Activity.AdminPanelActivity"
+            android:label="@string/title_activity_admin_panel" />
+        <activity android:name=".Activity.Login" />
+        <activity android:name=".Activity.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

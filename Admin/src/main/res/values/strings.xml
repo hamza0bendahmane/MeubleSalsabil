@@ -9,11 +9,17 @@
     <string name="empty_email">adresse email vide</string>
     <string name="empty_password">mot de passe vide</string>
     <string name="error">erreure</string>
+    <string name="length">length : </string>
+    <string name="width">width : </string>
+    <string name="height">height : </string>
+    <string name="quantity">quantity : </string>
+    <string name="category">category : </string>
+
     <string name="login_successful">connexion avec succé</string>
     <string name="title_activity_admin_panel">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="please_wait">svp Attendez</string>
-    <string name="not_admin">الدخول للأدمين فقط</string>
+    <string name="not_admin">Seulement l\'admin est autorisé de connecter</string>
 </resources>
