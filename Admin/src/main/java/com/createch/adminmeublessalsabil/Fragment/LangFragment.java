@@ -45,6 +45,7 @@ public class LangFragment extends Fragment {
             public void onClick(View v) {
                 if ((getLang() == "ar")) {
                     changeLang("fr");
+
                 }
             }
         });
@@ -66,6 +67,23 @@ public class LangFragment extends Fragment {
         res.updateConfiguration(configuration, display);
         Toast.makeText(getContext(), getResources().getString(R.string.language_updated), Toast.LENGTH_SHORT).show();
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateIcons();
+    }
+
+    private void updateIcons() {
+        if (getLang().equals("ar")) {
+            getView().findViewById(R.id.imagear).setBackgroundResource(R.drawable.selected);
+            getView().findViewById(R.id.imagefr).setBackgroundResource(R.drawable.nselected);
+
+        } else {
+            getView().findViewById(R.id.imagear).setBackgroundResource(R.drawable.nselected);
+            getView().findViewById(R.id.imagefr).setBackgroundResource(R.drawable.selected);
+        }
     }
 
     private String getLang() {

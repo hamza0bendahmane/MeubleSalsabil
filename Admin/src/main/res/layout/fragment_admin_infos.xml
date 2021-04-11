@@ -108,7 +108,6 @@
                             android:id="@+id/full_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="فلاتن الفلاني"
                             android:textColor="@color/dark_grey"
                             android:textSize="24sp" />
                     </LinearLayout>
@@ -263,7 +262,6 @@
                             android:id="@+id/phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0556765919"
                             android:textColor="@color/dark_grey"
                             android:textSize="24sp" />
                     </LinearLayout>
@@ -624,7 +622,6 @@
                             android:id="@+id/adr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="el kléa , typaza"
                             android:textColor="@color/dark_grey"
                             android:textSize="24sp" />
                     </LinearLayout>
@@ -779,7 +776,6 @@
                             android:id="@+id/workh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="8 am - 10 pm"
                             android:textColor="@color/dark_grey"
                             android:textSize="24sp" />
                     </LinearLayout>
@@ -912,7 +908,6 @@
                             android:id="@+id/email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="hemail@email.com"
                             android:textColor="@color/dark_grey"
                             android:textSize="24sp" />
                     </LinearLayout>

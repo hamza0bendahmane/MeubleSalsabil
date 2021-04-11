@@ -22,4 +22,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="please_wait">svp Attendez</string>
     <string name="not_admin">Seulement l\'admin est autorisé de connecter</string>
+    <string name="shouldnt_beempty">لا تترك هذه الخانة فارغة</string>
+    <string name="shouldbe_same">يجب ان يكونا متطابقين</string>
+    <string name="pass_wrong">كلمة السر خاطئة</string>
+    <string name="pass_updated">تم تحديث كلمة السر بنجاح</string>
 </resources>

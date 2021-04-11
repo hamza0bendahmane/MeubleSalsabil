@@ -53,7 +53,6 @@
                 android:id="@+id/imagear"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/selected"
 
                 />
 
@@ -101,7 +100,6 @@
                 android:id="@+id/imagefr"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/nselected"
 
                 />
 
