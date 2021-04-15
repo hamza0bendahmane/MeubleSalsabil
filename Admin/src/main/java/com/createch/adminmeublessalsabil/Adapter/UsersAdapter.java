@@ -1,6 +1,8 @@
 package com.createch.adminmeublessalsabil.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -12,6 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.createch.adminmeublessalsabil.Model.User;
 import com.createch.adminmeublessalsabil.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -21,7 +26,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -87,20 +91,38 @@ public class UsersAdapter extends FirestoreRecyclerAdapter<User, UsersAdapter.Us
         holder.itemView.findViewById(R.id.block_tool).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // block user
-                thisdocref.update("blocked", true).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        FirebaseFirestore.getInstance().collection("BlockedUsers").document(thisdocref.getId()).set(new HashMap<String, Object>(), SetOptions.merge()).
-                                addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(holder.itemView.getContext(), "blocked", Toast.LENGTH_SHORT).show();
 
-                                    }
-                                });
+                new AlertDialog.Builder(context).setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // block user
+                        thisdocref.update("blocked", true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                FirebaseFirestore.getInstance().collection("BlockedUsers").document(thisdocref.getId()).set(new HashMap<String, Object>(), SetOptions.merge()).
+                                        addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(holder.itemView.getContext(), "blocked", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        });
+                            }
+                        });
+
                     }
-                });
+                })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).setTitle("تأكيد").
+                        setMessage("هل انت متأكد من حظر المستخدم").show();
+
+
+
+
 
 
             }
@@ -148,7 +170,9 @@ public class UsersAdapter extends FirestoreRecyclerAdapter<User, UsersAdapter.Us
         }
 
         public void setPhoto(String photo) {
-            Picasso.get().load(photo).fit().centerCrop().into(this.photo);
+            RequestOptions requestOptions = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .override(100, 100) ;
+            Glide.with(context).load(Uri.parse(photo)).apply(requestOptions).into(this.photo);
         }
 
     }

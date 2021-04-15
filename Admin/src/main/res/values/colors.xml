@@ -12,6 +12,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gold">#B39A52</color>
     <color name="dark_grey">#808080</color>
+    <color name="transparent_">#00000000</color>
     <color name="greys">#F6F6F6</color>
     <color name="paper_beige">#DCBFA6</color>
     <color name="bare_beige">#E8D3C9</color>

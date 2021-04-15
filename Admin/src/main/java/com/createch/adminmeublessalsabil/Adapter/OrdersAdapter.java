@@ -1,6 +1,8 @@
 package com.createch.adminmeublessalsabil.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,58 +11,95 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.createch.adminmeublessalsabil.Activity.OrderDetails;
 import com.createch.adminmeublessalsabil.Model.Order;
 import com.createch.adminmeublessalsabil.R;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.ArrayList;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> {
+public class OrdersAdapter extends FirestoreRecyclerAdapter<Order, OrdersAdapter.OrderHolder> {
+    Context context;
 
-    // creating variables for our ArrayList and context
-    private final ArrayList<Order> OrderArrayList;
-    private final Context context;
-
-    // creating constructor for our adapter class
-    public OrdersAdapter(ArrayList<Order> OrderArrayList, Context context) {
-        this.OrderArrayList = OrderArrayList;
+    public OrdersAdapter(@NonNull FirestoreRecyclerOptions<Order> options, Context context) {
+        super(options);
         this.context = context;
     }
 
+
+    @Override
+    protected void onBindViewHolder(@NonNull OrdersAdapter.OrderHolder holder,
+                                    int position, @NonNull Order model) {
+
+
+        holder.setName(model.getUser().getFname());
+        holder.setPhone(model.getUser().getPhone());
+        holder.setPhoto(model.getUser().getPhoto());
+
+
+        holder.itemView.findViewById(R.id.order_details).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                        Intent ii = new Intent(context, OrderDetails.class);
+                        ii.putExtra("ref", getSnapshots().getSnapshot(position).getId());
+                        ii.putExtra("accepted", model.getState().equals("accepted"));
+
+                context.startActivity(ii);
+
+            }
+        });
+
+
+
+    }
+
+
     @NonNull
     @Override
-    public OrdersAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // passing our layout file for displaying our card item
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.order_layout, parent, false));
+    public OrdersAdapter.OrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_layout,
+                parent, false);
+        return new OrdersAdapter.OrderHolder(v);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull OrdersAdapter.ViewHolder holder, int position) {
-        // setting data to our text views from our modal class.
-        Order Order = OrderArrayList.get(position);
-        holder.courseNameTV.setText(Integer.toString(Order.getTotalPrice()));
-        holder.courseDurationTV.setText(Order.getDate().toString());
-        holder.courseDescTV.setText(Order.getState());
-    }
 
-    @Override
-    public int getItemCount() {
-        // returning the size of our array list.
-        return OrderArrayList.size();
-    }
+    class OrderHolder extends RecyclerView.ViewHolder {
 
-    class ViewHolder extends RecyclerView.ViewHolder {
         // creating variables for our text views.
-        private final TextView courseNameTV;
-        private final TextView courseDurationTV;
-        private final TextView courseDescTV;
+        TextView name;
+        TextView phone;
+        CircleImageView photo;
 
-        public ViewHolder(@NonNull View itemView) {
+        public OrderHolder(@NonNull View itemView) {
             super(itemView);
             // initializing our text views.
-            courseNameTV = itemView.findViewById(R.id.idTVCourseName);
-            courseDurationTV = itemView.findViewById(R.id.idTVCourseDuration);
-            courseDescTV = itemView.findViewById(R.id.idTVCourseDescription);
+            name = itemView.findViewById(R.id.name);
+            phone = itemView.findViewById(R.id.phone);
+            photo = itemView.findViewById(R.id.photo);
         }
+
+        public void setName(String name) {
+            this.name.setText(name);
+        }
+
+        public void setPhone(String phone) {
+            this.phone.setText(phone);
+        }
+
+        public void setPhoto(String photo) {
+            RequestOptions requestOptions = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .override(250, 200) ;
+            Glide.with(context).load(Uri.parse(photo)).apply(requestOptions).into(this.photo);
+        }
+
+
+
+
     }
 
 

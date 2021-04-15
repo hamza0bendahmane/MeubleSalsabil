@@ -2,10 +2,13 @@ package com.createch.adminmeublessalsabil.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,21 +16,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.createch.adminmeublessalsabil.Activity.EditProduct;
 import com.createch.adminmeublessalsabil.Model.Item;
 import com.createch.adminmeublessalsabil.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdapter.ProductHolder> {
     Context context;
 
-    public ProductsAdapter(@NonNull FirestoreRecyclerOptions<Item> options, Context context) {
+    ArrayList<Item> selected_items ;
+    String tag = "";
+    public ProductsAdapter(@NonNull FirestoreRecyclerOptions<Item> options, Context context, String tag , ArrayList<Item> selected_items) {
         super(options);
         this.context = context;
+        this.tag = tag;
+        this.selected_items = selected_items;
+    }
+
+    public ArrayList<Item> getSelected_items() {
+        return selected_items;
     }
 
     @Override
@@ -42,8 +56,26 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
         holder.setProductPrice(String.valueOf(model.getPrice()));
         holder.setProductQuantity(String.valueOf(model.getQuantity()));
         holder.setProductWidth(String.valueOf(model.getWidth()));
+        if (tag.equals("remove")){
+            holder.checkBox.setVisibility(View.VISIBLE);
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+                        selected_items.add(model);
 
-        holder.itemView.findViewById(R.id.edit_product).setOnClickListener(new View.OnClickListener() {
+                    }else{
+
+                        selected_items.remove(model);
+                    }
+
+
+            }
+        });
+
+
+        }
+        holder.itemView.findViewById(R.id.edit_collection).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent ii = new Intent(context, EditProduct.class);
@@ -73,6 +105,7 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
         TextView productMaterials;
         ImageView productImage;
         RecyclerView productColors;
+        CheckBox checkBox ;
 
 
         public ProductHolder(@NonNull View itemView) {
@@ -82,6 +115,7 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
             productCategory = itemView.findViewById(R.id.category_product);
             productHeight = itemView.findViewById(R.id.height);
             productName = itemView.findViewById(R.id.name_product);
+            checkBox = itemView.findViewById(R.id.chec_box);
             productLength = itemView.findViewById(R.id.length);
             productQuantity = itemView.findViewById(R.id.quantity);
             productMaterials = itemView.findViewById(R.id.materials);
@@ -122,11 +156,15 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
         }
 
         public void setProductImage(String productImage) {
-            Picasso.get().load(productImage).fit().centerCrop().into(this.productImage);
+
+            RequestOptions requestOptions = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .override(100, 100) ;
+            Glide.with(context).load(Uri.parse(productImage)).apply(requestOptions).into(this.productImage);
+
         }
 
         public void setProductColors(List<String> productColors) {
-            ColorsAdapter ada = new ColorsAdapter(productColors);
+            ColorsAdapter ada = new ColorsAdapter(productColors,"");
             this.productColors.setHasFixedSize(true);
             this.productColors.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             this.productColors.setAdapter(ada);

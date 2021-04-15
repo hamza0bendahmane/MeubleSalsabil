@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/edit_name_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/imicon"
+    android:layout_marginVertical="5dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edittext_namee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/border_rec_corn"
+        android:elevation="2dp"
+        android:hint="enter the name here"
+        android:translationZ="3dp"
+        app:hintEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addmaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:elevation="2dp"
+            android:inputType="textPersonName"
+            android:translationZ="3dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext_namee"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:backgroundTint="#FF5252"
+            android:elevation="2dp"
+            android:text="cancel"
+            android:textColor="@color/white"
+
+            android:translationZ="3dp"
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ss"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:text="submit"
+            android:textColor="@color/white"
+            android:translationZ="3dp"
+            app:cornerRadius="10dp"
+
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

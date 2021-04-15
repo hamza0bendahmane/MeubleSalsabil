@@ -74,9 +74,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:layout_margin="10dp"
+                android:id="@+id/users_number"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-
+                android:textSize="24sp"
+                android:textStyle="bold"
                 />
 
             <TextView
@@ -133,9 +134,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
+                android:id="@+id/products_number"
                 android:layout_margin="10dp"
-                android:textSize="18sp"
-
+                android:textSize="24sp"
+                android:textStyle="bold"
                 />
 
             <TextView
@@ -200,9 +202,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
+                android:id="@+id/accepted_number"
                 android:layout_margin="10dp"
-                android:textSize="18sp"
-
+                android:textSize="24sp"
+                android:textStyle="bold"
                 />
 
             <TextView
@@ -259,8 +262,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:layout_margin="10dp"
+                android:id="@+id/waiting_number"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="24sp"
+                android:textStyle="bold"
 
                 />
 

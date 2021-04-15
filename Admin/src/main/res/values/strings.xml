@@ -26,4 +26,5 @@
     <string name="shouldbe_same">يجب ان يكونا متطابقين</string>
     <string name="pass_wrong">كلمة السر خاطئة</string>
     <string name="pass_updated">تم تحديث كلمة السر بنجاح</string>
+    <string name="saving_data">حفظ البيانات</string>
 </resources>

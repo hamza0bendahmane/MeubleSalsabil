@@ -19,7 +19,7 @@ import com.createch.adminmeublessalsabil.R;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SettingsFragment extends Fragment {
+public class    SettingsFragment extends Fragment {
 
     MaterialCardView lang, infos, logout;
 

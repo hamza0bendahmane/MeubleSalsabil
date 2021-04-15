@@ -1,7 +1,7 @@
 package com.createch.adminmeublessalsabil.Model;
 
 
-public class User {
+public class User implements Comparable {
     String email;
     String fname;
     String phone;
@@ -78,5 +78,16 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof User){
+            User oo = (User) o;
+            return  this.getFname().compareTo(oo.getFname());
+
+        }else
+            return 1;
     }
 }

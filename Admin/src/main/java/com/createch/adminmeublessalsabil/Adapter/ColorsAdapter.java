@@ -15,10 +15,11 @@ import java.util.List;
 
 public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolder> {
     List<String> colors;
+    String tag ;
 
-
-    public ColorsAdapter(List<String> colors) {
+    public ColorsAdapter(List<String> colors , String tag) {
         this.colors = colors;
+        this.tag = tag;
     }
 
 
@@ -43,12 +44,30 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolde
         return colors.size();
     }
 
-    class ColorHolder extends RecyclerView.ViewHolder {
+
+    class ColorHolder extends RecyclerView.ViewHolder  {
         MaterialCardView image;
 
         public ColorHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.color_c);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(tag.equals("remove")){
+                        removeAt(getAdapterPosition());
+                    }
+                    return false;
+                }
+            });
         }
+
+
+
+
+    public void removeAt(int position) {
+        colors.remove(position);
+        notifyDataSetChanged();
+    }
     }
 }

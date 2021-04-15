@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/splash_image"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeublesSalsabil">
-        <activity android:name=".Activity.EditProduct"></activity>
+
+
+        <activity android:name=".Activity.OrderDetails" />
+        <activity android:name=".Activity.EditCollection" />
+        <activity android:name=".Activity.AddCollection" />
+        <activity android:name=".Activity.EditProduct" />
         <activity android:name=".Activity.AddProduct" />
         <activity
             android:name=".Activity.AdminPanelActivity"

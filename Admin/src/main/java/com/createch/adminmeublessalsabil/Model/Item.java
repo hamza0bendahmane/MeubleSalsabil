@@ -2,15 +2,16 @@ package com.createch.adminmeublessalsabil.Model;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Item extends Soldable {
 
     double length;
     double width;
     double height;
-    ArrayList<String> colors;
+    List<String> colors;
     double quantity;
-    ArrayList<String> materials;
+    List<String> materials;
     String category;
     double price;
     String image;
@@ -84,11 +85,11 @@ public class Item extends Soldable {
         this.width = width;
     }
 
-    public ArrayList<String> getColors() {
+    public List<String> getColors() {
         return colors;
     }
 
-    public void setColors(ArrayList<String> colors) {
+    public void setColors(List<String> colors) {
         this.colors = colors;
     }
 
@@ -100,11 +101,11 @@ public class Item extends Soldable {
         this.quantity = quantity;
     }
 
-    public ArrayList<String> getMaterials() {
+    public List<String> getMaterials() {
         return materials;
     }
 
-    public void setMaterials(ArrayList<String> materials) {
+    public void setMaterials(List<String> materials) {
         this.materials = materials;
     }
 
@@ -113,6 +114,6 @@ public class Item extends Soldable {
     }
 
     public void setCategory(String category) {
-        category = category;
+        this.category = category;
     }
 }

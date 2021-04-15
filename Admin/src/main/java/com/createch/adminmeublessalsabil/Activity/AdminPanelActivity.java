@@ -1,5 +1,6 @@
 package com.createch.adminmeublessalsabil.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,18 +16,22 @@ import com.createch.adminmeublessalsabil.Fragment.SettingsFragment;
 import com.createch.adminmeublessalsabil.Fragment.UserFragment;
 import com.createch.adminmeublessalsabil.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 
 
 public class AdminPanelActivity extends AppCompatActivity {
     BottomNavigationView navView;
+    SharedPreferences preferences;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
-        showFragment(new PanelFragment());
-
         navView = findViewById(R.id.nav_view);
+
+        FirebaseApp.initializeApp();
 
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -49,6 +54,7 @@ public class AdminPanelActivity extends AppCompatActivity {
                 return showFragment(fragment);
             }
         });
+        navView.setSelectedItemId(R.id.idpanel);
 
     }
 

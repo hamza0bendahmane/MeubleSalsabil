@@ -1,60 +1,147 @@
 package com.createch.adminmeublessalsabil.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.createch.adminmeublessalsabil.Activity.AddCollection;
+import com.createch.adminmeublessalsabil.Adapter.CollectionsAdapter;
+import com.createch.adminmeublessalsabil.Model.Model;
 import com.createch.adminmeublessalsabil.R;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CollectionsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CollectionsFragment extends Fragment {
+public class CollectionsFragment extends Fragment   {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    CollectionsAdapter adapter;
+    CollectionReference ref;
+    FirestoreRecyclerOptions<Model> options;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        view.findViewById(R.id.addproduct).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // go to add collection .....
+                Intent intent = new Intent(getContext(), AddCollection.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.gotoproducts).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment ff = new ProductsFragment();
 
-    public CollectionsFragment() {
-        // Required empty public constructor
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, ff)
+                        .commit();
+            }
+        });
+        setUpRecyclerView();
+        SearchView ss = view.findViewById(R.id.simpleSearchView);
+        ss.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String s = newText;
+                if (!s.trim().isEmpty())
+                    SearchFor(s.trim());
+                else
+                    adapter.updateOptions(options);
+                return false;
+            }
+        });
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CollectionsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CollectionsFragment newInstance(String param1, String param2) {
-        CollectionsFragment fragment = new CollectionsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+
+
+    private void SearchFor(String field) {
+        Query query1 = ref.whereGreaterThanOrEqualTo("name", field).
+                whereLessThanOrEqualTo("name", field + "\uf8ff");
+        FirestoreRecyclerOptions<Model> options1 =
+                new FirestoreRecyclerOptions.Builder<Model>()
+                        .setQuery(query1, Model.class).build();
+        adapter.updateOptions(options1);
+
+
+    }
+
+    private void setUpRecyclerView() {
+        ref = FirebaseFirestore.getInstance().collection("Collections");
+
+        Query query = ref;
+        options = new FirestoreRecyclerOptions.Builder<Model>()
+                .setQuery(query, Model.class)
+                .build();
+        adapter = new CollectionsAdapter(options, getContext());
+
+        RecyclerView recyclerView = getView().findViewById(R.id.coll_recy);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+                if (dy > 0 && bottom_navigation.isShown()) {
+                    bottom_navigation.setVisibility(View.GONE);
+                } else if (dy < 0 ) {
+                    bottom_navigation.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+
     }
+    
+    
+    
+    
+    
+
+    public CollectionsFragment() {
+        // Required empty public constructor
+
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,4 +149,9 @@ public class CollectionsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_collections, container, false);
     }
+    
+    
+    
+    
+    
 }

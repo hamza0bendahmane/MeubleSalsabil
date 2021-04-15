@@ -3,12 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/container"
-    android:background="@color/transparent_"
-    android:backgroundTint="@color/transparent_"
     android:layout_marginHorizontal="3dp"
-    android:layout_marginVertical="5dp"
-    android:orientation="horizontal">
+    android:layout_marginVertical="5dp"   android:orientation="horizontal">
 
 
     <com.google.android.material.card.MaterialCardView
@@ -18,7 +14,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/rectangle_login"
-        android:backgroundTint="@color/white"
         android:clickable="true"
         android:elevation="4dp"
         app:cardCornerRadius="9dp"
@@ -28,11 +23,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/back_con"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="3dp">
 
 
             <RelativeLayout
@@ -42,8 +35,8 @@
 
                 <ImageView
                     android:id="@+id/edit_collection"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="10dp"
@@ -52,25 +45,17 @@
                     android:src="@drawable/settings"
                     app:tint="@color/gold" />
 
-                <TextView
-                    android:id="@+id/category_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_toEndOf="@id/edit_collection"
-                    android:text="الفئة : سرير"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="16sp" />
+
 
                 <TextView
                     android:id="@+id/name_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_toStartOf="@id/image_product"
+                    android:layout_alignParentEnd="true"
                     android:text="سرير خشبي"
                     android:textColor="@color/gold"
-                    android:textSize="18sp"
+                    android:textSize="21sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -78,20 +63,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/name_product"
-                    android:layout_toStartOf="@id/image_product"
+                    android:layout_alignParentEnd="true"
                     android:text="المادة : خشب"
                     android:textColor="@color/dark_grey"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/image_product"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:src="@color/french_beige" />
+
             </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+
+                />
 
             <RelativeLayout
                 android:id="@+id/imigcon"
@@ -137,62 +125,54 @@
                         android:id="@+id/colors"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginHorizontal="8dp"
                         android:layout_toStartOf="@id/titgle_name"
 
                         />
+                    <TextView
+                        android:id="@+id/quant_nam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/colors"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginVertical="4dp"
+                        android:text="الكمية :"
+                        android:textSize="18sp"/>
 
-
+                    <TextView
+                        android:id="@+id/qqq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/colors"
+                        android:layout_marginVertical="4dp"
+                        android:layout_toStartOf="@+id/quant_nam"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/conte_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quant_nam"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginVertical="4dp"
+                        android:text="المحتويات :"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/content_coll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quant_nam"
+                        android:layout_marginVertical="4dp"
+                        android:layout_toStartOf="@+id/conte_name"
+                        android:text="...."
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/titgle_namae"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="8dp"
-                    android:text="الكمية : 45"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/quantity"
-                    android:text="الطول : 4.5"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/width"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/quantity"
-                    android:layout_centerHorizontal="true"
-                    android:text="العرض : 7"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/length"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/quantity"
-                    android:layout_alignParentEnd="true"
-                    android:text="الإرتفاع : 1"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp" />
-                <CheckBox
-                    android:id="@+id/chec_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/length"
-                    android:checked="false"
-                    android:visibility="gone"
-                    />
 
             </RelativeLayout>
         </LinearLayout>
