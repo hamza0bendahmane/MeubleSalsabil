@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TextInput Style-->
+        <style name="Widget.MeublesSalsabil.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <item name="hintTextAppearance">@style/TextAppearance.MeublesSalsabil.TextInputLayout.HintText</item>>
+            <item name="boxStrokeColor">?attr/colorPrimary</item>
+            <item name="android:textColorHint">?attr/colorSecondaryVariant</item>
+            <item name="android:fontFamily">@font/ge_ss_unique_light</item>
+        </style>
+
+        <style name="TextAppearance.MeublesSalsabil.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+            <item name="android:textColor">?android:attr/textColorPrimary</item>
+            <item name="android:fontFamily">@font/ge_ss_unique_light</item>
+            <item name="theme">@style/FontUltra</item>
+        </style>
+
+        <!--Material Button Style1-->
+        <style name="Widget.MeublesSalsabil.Button" parent="Widget.MaterialComponents.Button">
+            <item name="android:textColor">?attr/colorOnPrimary</item>
+            <item name="android:fontFamily">@font/ge_ss_unique_light</item>
+            <item name="backgroundTint">?attr/colorPrimary</item>
+            <item name="cornerRadius">10dp</item>
+        </style>
+
+       <!--Material Button Style2-->
+        <style name="Widget.MeublesSalsabil.OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+            <item name="android:textColor">@color/facebook_blue</item>
+            <item name="strokeColor">@color/facebook_blue</item>
+            <item name="android:fontFamily">@font/ge_ss_unique_light</item>
+            <item name="strokeWidth">1dp</item>
+            <item name="cornerRadius">10dp</item>
+        </style>
+
+        <!--Material Button Style3 (Flat)-->
+        <style name="Widget.MeublesSalsabil.LangButton" parent="Widget.MaterialComponents.Button.TextButton">
+            <item name="android:fontFamily">@font/hacen_tunisia_bold</item>
+            <item name="android:textColor">@color/facebook_blue</item>
+        </style>
+
+        <!--Material Button Style4 (Flat)-->
+        <style name="Widget.MeublesSalsabil.FlatButton" parent="Widget.MaterialComponents.Button.TextButton">
+            <item name="android:fontFamily">@font/ge_ss_unique_light</item>
+            <item name="minWidth">0dp</item>
+            <item name="minHeight">0dp</item>
+        </style>
+
+        <!--font section-->
+        <style name="FontUltra">
+            <item name="android:fontFamily">@font/ge_ss_unique_light</item>
+        </style>
+
+        <style name="FontUltraBold">
+            <item name="android:fontFamily">@font/ge_ss_unique_bold</item>
+        </style>
+
+        <style name="FontLang">
+            <item name="android:fontFamily">@font/hacen_tunisia</item>
+        </style>
+
+        <style name="FontLangBold">
+            <item name="android:fontFamily">@font/hacen_tunisia_bold</item>
+        </style>
+
+</resources>

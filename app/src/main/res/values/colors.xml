@@ -10,6 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gold">#B39A52</color>
     <color name="dark_grey">#808080</color>
+    <color name="light_grey">#FBF9F9</color>
     <color name="paper_beige">#DCBFA6</color>
     <color name="bare_beige">#E8D3C9</color>
     <color name="cosmic_latte">#FFF8E7</color>
@@ -21,5 +22,12 @@
     <color name="mesa_beige">#F6EBD3</color>
     <color name="stonish_beige">#CCB49A</color>
     <color name="termite_beige">#DDBB66</color>
+    <color name="facebook_blue">#4767C5</color>
+    <color name="indigo_blue">#5C80EC</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 
 </resources>

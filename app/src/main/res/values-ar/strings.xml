@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MeublesSalsabil</string>
+    <string name="mot_de_passe">كلمة المرور</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="button_connexion">التالي</string>
+    <string name="creer_votre_compte">أنشئ حسابك الشخصي</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="creer_un_compte">أنشئ حسابا جديدا</string>
+    <string name="nom">الاسم</string>
+    <string name="fb_login">سجل باستخدام فيسبوك</string>
+    <string name="next_btn">التالي</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="new_login">تسجيل جديد</string>
+    <string name="remember_me">تذكرني</string>
+    <string name="forget_pass">نسيت كلمة المرور</string>
+    <string name="lang">عربي</string>
+    <string name="last_name">اللقب</string>
+    <string name="search">ابحث عن منتج ...</string>
+    <string name="welcome_text">مرحبا %s.</string>
+    <string name="welc_desc">ما الذي تود شراءه اليوم ؟</string>
+    <string name="voir_nos_produits">تصفح منتجاتنا ></string>
+    <string name="produits_les_plus_populaires">المنتجات الأكثر رواجا ></string>
+    <string name="discount">خصم %d</string>
+    <string name="discount_desc">لفترة محدودة</string>
+    <string name="password_error">كلمة المرور يجب أن تتضمن  8 رموز</string>
+    <string name="email_error">أدخل بريدك الالكتروني</string>
+    <string name="home">الرئيسية</string>
+    <string name="favourites">المفضلة</string>
+    <string name="shoplist">المشتريات</string>
+    <string name="settings">الإعدادات</string>
+    <string name="somme_totale">المبلغ الإجمالي</string>
+    <string name="somme_value">%d دج</string>
+    <string name="confirmer_vos_achats">تأكيد المشتريات</string>
+    <string name="favouries">المفضلة</string>
+    <string name="ordres">الطلبات</string>
+    <string name="parametres">الإعدادات</string>
+    <string name="full_name">%1$s %2$s</string>
+    <string name="email_display">%s</string>
+    <string name="phone_display">%s</string>
+    <string name="lang_updated">تم تحديث اللغة</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="personal_info">المعلومات الشخصية</string>
+    <string name="langue">اللغة</string>
+</resources>
