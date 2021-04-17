@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greys"
+    android:backgroundTint="@color/greys"
+    android:padding="8dp"
+    tools:context=".Fragment.PanelFragment">
+
+    <TextView
+        android:id="@+id/wlcm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="مرحبا بك أدمن"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/wlpanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="لوحة التحكم الخاصة بك"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wlcm" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/users_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/wlpanel"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/rectangle_login"
+        android:backgroundTint="@color/gold"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:onClick="gotousers"
+        android:translationZ="8dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/products_card"
+        app:layout_constraintEnd_toStartOf="@+id/guid"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wlpanel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/into"
+                app:tint="@color/white"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_margin="10dp"
+                android:id="@+id/users_number"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="10dp"
+                android:text="عدد المستخدمين"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/products_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/users_card"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:onClick="gotoproducts"
+        android:translationZ="8dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/users_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/rectangle_login"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/into"
+                app:tint="@color/gold"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:id="@+id/products_number"
+                android:layout_margin="10dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="10dp"
+                android:text="عدد المنتجات المضافة"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/orders_card"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wlpanel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:onClick="gotoaorders"
+        android:translationZ="8dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guid"
+        app:layout_constraintTop_toBottomOf="@id/wlpanel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+
+            android:background="@drawable/rectangle_login"
+            android:minHeight="300dp"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/into"
+                app:tint="@color/gold"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:id="@+id/accepted_number"
+                android:layout_margin="10dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="10dp"
+                android:text="عدد الطلبات المقبولة"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/aorders_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orders_card"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/shadow"
+        android:backgroundTint="@color/gold"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:onClick="gotoorders"
+        android:translationZ="8dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guid"
+        app:layout_constraintTop_toBottomOf="@+id/orders_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/into"
+                app:tint="@color/white"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_margin="10dp"
+                android:id="@+id/waiting_number"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="10dp"
+                android:text="عدد الطلبات في انتظار القبول"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

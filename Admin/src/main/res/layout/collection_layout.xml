@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="3dp"
+    android:layout_marginVertical="5dp"   android:orientation="horizontal">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/name_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/rectangle_login"
+        android:clickable="true"
+        android:elevation="4dp"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+
+            <RelativeLayout
+                android:id="@+id/imicon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/edit_collection"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/settings"
+                    app:tint="@color/gold" />
+
+
+
+                <TextView
+                    android:id="@+id/name_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="سرير خشبي"
+                    android:textColor="@color/gold"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/materials"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_product"
+                    android:layout_alignParentEnd="true"
+                    android:text="المادة : خشب"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/imigcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/titgle_namae"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/titgle_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="اللون :"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/ttt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/price"
+                        android:text="السعر :"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="7000 dzd"
+                        android:textColor="@color/gold"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/colors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_toStartOf="@id/titgle_name"
+
+                        />
+                    <TextView
+                        android:id="@+id/quant_nam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/colors"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginVertical="4dp"
+                        android:text="الكمية :"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/qqq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/colors"
+                        android:layout_marginVertical="4dp"
+                        android:layout_toStartOf="@+id/quant_nam"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/conte_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quant_nam"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginVertical="4dp"
+                        android:text="المحتويات :"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/content_coll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quant_nam"
+                        android:layout_marginVertical="4dp"
+                        android:layout_toStartOf="@+id/conte_name"
+                        android:text="...."
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+
+
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
