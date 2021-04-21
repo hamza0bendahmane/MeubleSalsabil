@@ -1,7 +1,4 @@
-package com.createch.meublessalsabil;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.createch.meublessalsabil.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,15 +9,17 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.createch.meublessalsabil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -28,25 +27,26 @@ import java.util.Locale;
 
 public class Login extends AppCompatActivity {
 
-    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    private final FirebaseAuth fAuth = FirebaseAuth.getInstance();
     SharedPreferences sharedPreferences;
     private TextInputEditText uEmail, uPassword;
     private TextView uRegisterButton;
     private Button uLoginBtn;
 
-    /*TDDO*/
+    /*TODO*/
     //save changed lang
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MeublesSalsabil);
+        checkLogged();
         setContentView(R.layout.activity_login);
 
-        uEmail = (TextInputEditText) findViewById(R.id.email_edit_text);
-        uPassword = (TextInputEditText) findViewById(R.id.password_edit_text);
-        uRegisterButton = (TextView) findViewById(R.id.textView);
-        uLoginBtn = (Button) findViewById(R.id.login_button);
+        uEmail = findViewById(R.id.email_edit_text);
+        uPassword = findViewById(R.id.password_edit_text);
+        uRegisterButton = findViewById(R.id.textView);
+        uLoginBtn = findViewById(R.id.login_button);
 
         //change languange
         Button langBtn = findViewById(R.id.change_lang);
@@ -104,18 +104,26 @@ public class Login extends AppCompatActivity {
         uRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
+                startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
 
-        if(fAuth.getCurrentUser()!=null){
+        if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), Home.class));
         }
 
     }
 
+    private void checkLogged() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent intent = new Intent(this, Home.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
-    private void changeLang(String lang){
+
+    private void changeLang(String lang) {
         Locale local = new Locale(lang);
         Resources res = getBaseContext().getResources();
         DisplayMetrics displayMetrics = res.getDisplayMetrics();

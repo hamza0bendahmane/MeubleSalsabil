@@ -1,7 +1,4 @@
-package com.createch.meublessalsabil;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.createch.meublessalsabil.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.createch.meublessalsabil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +25,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -33,8 +33,8 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-    private FirebaseAuth fAuth = FirebaseAuth.getInstance();;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     SharedPreferences sharedPreferences;
 
     /*TDDO*/
@@ -102,23 +102,23 @@ public class Register extends AppCompatActivity {
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Log.d("firebase---","success signup");
+                        if(task.isSuccessful()) {
+                            Log.d("firebase---", "success signup");
 
                             //Creating new user
-                            /*TODO*/
-                            //replace with User model
+                            /*TODO : replace with User model */
+
                             Map<String, Object> user = new HashMap<>();
                             user.put("first", firstName);
                             user.put("last", lastName);
-                            user.put("email",email);
+                            user.put("email", email);
                             //user.put("imageUrl","_");
                             //user.put("phone","_");
                             //user.put("address","_");
 
                             //Adding document to firestore
                             db.collection("Users")
-                                    .document(fAuth.getCurrentUser().getUid())
+                                    .document(task.getResult().getUser().getUid())
                                     .set(user)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override

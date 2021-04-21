@@ -65,7 +65,7 @@ public class UsersAdapter extends FirestoreRecyclerAdapter<User, UsersAdapter.Us
         holder.itemView.findViewById(R.id.im3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // show the user detailed infos ...
+                //TODO : show the user detailed infos ...
 
 
             }

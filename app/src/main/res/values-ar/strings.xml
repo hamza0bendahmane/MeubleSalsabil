@@ -21,7 +21,7 @@
     <string name="welc_desc">ما الذي تود شراءه اليوم ؟</string>
     <string name="voir_nos_produits">تصفح منتجاتنا ></string>
     <string name="produits_les_plus_populaires">المنتجات الأكثر رواجا ></string>
-    <string name="discount">خصم %d</string>
+    <string name="discount">خصم </string>
     <string name="discount_desc">لفترة محدودة</string>
     <string name="password_error">كلمة المرور يجب أن تتضمن  8 رموز</string>
     <string name="email_error">أدخل بريدك الالكتروني</string>

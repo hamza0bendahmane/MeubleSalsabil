@@ -20,7 +20,7 @@
     <string name="welc_desc">Qu\'est ce que vous voulez acheter aujourd\'hui?</string>
     <string name="voir_nos_produits"><![CDATA[Voir nos produits >]]></string>
     <string name="produits_les_plus_populaires"><![CDATA[Produits les plus populaires >]]></string>
-    <string name="discount">Promo d%</string>
+    <string name="discount">Promo </string>
     <string name="discount_desc">Durée limitée</string>
     <string name="password_error">mot de passe doit contenir au moins 8 caractéres</string>
     <string name="email_error">Entrer votre mail</string>
@@ -44,4 +44,7 @@
     <string name="phone_display">%s</string>
     <string name="personal_info">Informations personnelles</string>
     <string name="langue">Langue</string>
+    <string name="about_theapp">حول التطبيق</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
