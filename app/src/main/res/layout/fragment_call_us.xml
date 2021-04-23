@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_grey"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bg_const"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         android:background="@drawable/backgroud_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.32"
@@ -17,46 +17,49 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <!--the icon shape has deformations here-->
-        <ImageButton
-            android:id="@+id/call_us"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="14dp"
-            android:background="@null"
-            android:elevation="0dp"
-            android:saveEnabled="false"
-            android:scaleType="centerInside"
-            android:src="@drawable/back_arrow"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/welcome_text"
-            style="@style/FontUltraBold"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="25dp"
-            android:text="إتصل بنا ."
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.502" />
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/call_us"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="14dp"
+                android:background="@null"
+                android:elevation="0dp"
+                android:saveEnabled="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/back_arrow"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/welcome_text"
+                style="@style/FontUltraBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:paddingHorizontal="25dp"
+                android:text="إتصل بنا ."
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bg_const">
+        android:layout_gravity="top|center_horizontal"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
         <LinearLayout
@@ -212,4 +215,4 @@
     </androidx.core.widget.NestedScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

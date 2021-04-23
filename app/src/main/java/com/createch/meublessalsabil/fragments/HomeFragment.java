@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +26,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,17 +50,6 @@ public class HomeFragment extends Fragment {
 
         // Required empty public constructor
 
-        if (getView() != null) {
-            getNotifications(getView());
-            fetchBestOffres(getView());
-            fetchPromotions(getView());
-            fetchProducts(getView());
-            boadapter.startListening();
-            prodadapter.startListening();
-            promadapter.startListening();
-
-
-        }
 
     }
 
@@ -67,10 +58,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        getNotifications(root);
-        fetchBestOffres(root);
-        fetchPromotions(root);
-        fetchProducts(root);
+
 
         return root;
     }
@@ -87,20 +75,6 @@ public class HomeFragment extends Fragment {
         promadapter.startListening();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getNotifications(getView());
-        fetchBestOffres(getView());
-        fetchPromotions(getView());
-        fetchProducts(getView());
-        boadapter.startListening();
-        prodadapter.startListening();
-        promadapter.startListening();
-        boadapter.notifyDataSetChanged();
-        prodadapter.notifyDataSetChanged();
-        promadapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onStop() {
@@ -150,6 +124,7 @@ public class HomeFragment extends Fragment {
         //search for product
     }
 
+
     void fetchProducts(View root) {
         Query query = FirebaseFirestore.getInstance().collection("Products");
         FirestoreRecyclerOptions<Item> options;
@@ -159,11 +134,8 @@ public class HomeFragment extends Fragment {
         prodadapter = new ProductsAdapter(options, getContext());
         RecyclerView recyclerView = root.findViewById(R.id.products_recy);
         recyclerView.setHasFixedSize(false);
-        recyclerView.setNestedScrollingEnabled(false);
-        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(prodadapter);
-        prodadapter.startListening();
     }
 
     void fetchPromotions(View root) {
@@ -176,11 +148,8 @@ public class HomeFragment extends Fragment {
         promadapter = new PromotionsAdapter(options, getContext());
         RecyclerView recyclerView = root.findViewById(R.id.promotions_recy);
         recyclerView.setHasFixedSize(false);
-        recyclerView.setNestedScrollingEnabled(false);
-        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(promadapter);
-        promadapter.startListening();
 
     }
 
@@ -193,16 +162,13 @@ public class HomeFragment extends Fragment {
         boadapter = new BestOffersAdapter(options, getContext());
         RecyclerView recyclerView = root.findViewById(R.id.bestoffres_recy);
         recyclerView.setHasFixedSize(false);
-        recyclerView.setNestedScrollingEnabled(false);
-        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(boadapter);
-        boadapter.startListening();
 
     }
 
     public void getNotifications(View root) {
-        /*TextView nn = root.findViewById(R.id.number_of_notification);
+        TextView nn = root.findViewById(R.id.number_of_notification);
         fdb.getReference().child("notSeenNotifications").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
             @Override
@@ -217,11 +183,11 @@ public class HomeFragment extends Fragment {
                 }
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                nn.setVisibility(View.INVISIBLE);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        nn.setVisibility(View.INVISIBLE);
 
-            }
-        });*/
+                    }
+                });
     }
 }

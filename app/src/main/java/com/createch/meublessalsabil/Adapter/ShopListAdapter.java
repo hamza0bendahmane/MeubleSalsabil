@@ -24,10 +24,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
-public class FavouritesAdapter extends FirestoreRecyclerAdapter<Item, FavouritesAdapter.ProductHolder> {
+public class ShopListAdapter extends FirestoreRecyclerAdapter<Item, ShopListAdapter.ProductHolder> {
     Context context;
 
-    public FavouritesAdapter(@NonNull FirestoreRecyclerOptions<Item> options, Context context) {
+    public ShopListAdapter(@NonNull FirestoreRecyclerOptions<Item> options, Context context) {
         super(options);
         this.context = context;
     }
@@ -40,7 +40,7 @@ public class FavouritesAdapter extends FirestoreRecyclerAdapter<Item, Favourites
         holder.setProductMaterials(model.getMaterials());
         holder.setProductName(model.getName());
         holder.setProductPrice(String.valueOf(model.getPrice()));
-
+        //    holder.setProductNumber(model.getNumber());
         holder.itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class FavouritesAdapter extends FirestoreRecyclerAdapter<Item, Favourites
     @NonNull
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.favourite_layout,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.soldable_layout,
                 parent, false);
         return new ProductHolder(v);
     }
@@ -67,6 +67,8 @@ public class FavouritesAdapter extends FirestoreRecyclerAdapter<Item, Favourites
     public class ProductHolder extends RecyclerView.ViewHolder {
         TextView productName;
         TextView productPrice;
+        TextView productNumber;
+        ImageView plus, minus;
         TextView productMaterials;
         ImageView productImage;
         RecyclerView productColors;
@@ -77,12 +79,19 @@ public class FavouritesAdapter extends FirestoreRecyclerAdapter<Item, Favourites
             productImage = itemView.findViewById(R.id.promotion_img);
             productColors = itemView.findViewById(R.id.colors);
             productName = itemView.findViewById(R.id.name_product);
+            productNumber = itemView.findViewById(R.id.number_of_sold);
+            plus = itemView.findViewById(R.id.plus);
+            minus = itemView.findViewById(R.id.minus);
             productMaterials = itemView.findViewById(R.id.materials);
             productPrice = itemView.findViewById(R.id.price);
         }
 
         public void setProductName(String productName) {
             this.productName.setText(productName);
+        }
+
+        public void setProductNumber(String number) {
+            this.productNumber.setText(number);
         }
 
 

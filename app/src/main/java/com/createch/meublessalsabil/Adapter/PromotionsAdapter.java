@@ -76,8 +76,8 @@ public class PromotionsAdapter extends FirestoreRecyclerAdapter<Promotion, Promo
 
         public void setProductImage(String im) {
 
-            RequestOptions requestOptions = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override(100, 100);
+            RequestOptions requestOptions = new RequestOptions().
+                    diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter();
             Glide.with(context).load(im).apply(requestOptions).into(this.productImage);
 
         }
