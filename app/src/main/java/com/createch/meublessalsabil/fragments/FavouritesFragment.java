@@ -15,13 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.createch.meublessalsabil.Activity.Notifications;
 import com.createch.meublessalsabil.Adapter.FavouritesAdapter;
 import com.createch.meublessalsabil.R;
-import com.createch.meublessalsabil.models.Item;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FavouritesFragment extends Fragment {
     FavouritesAdapter prodadapter;
@@ -57,13 +55,12 @@ public class FavouritesFragment extends Fragment {
     }
 
     void fetchFavorites(View root) {
-        CollectionReference ref = FirebaseFirestore.getInstance().collection("Temporary").document("Favorites").
-                collection(thisUser.getUid());
-        Query query = ref;
-        FirestoreRecyclerOptions<Item> options;
-        options = new FirestoreRecyclerOptions.Builder<Item>()
-                .setQuery(query, Item.class)
-                .build();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Temporary").child("Favorites").
+                child(thisUser.getUid());
+        FirebaseRecyclerOptions<String> options =
+                new FirebaseRecyclerOptions.Builder<String>()
+                        .setQuery(ref, String.class)
+                        .build();
         prodadapter = new FavouritesAdapter(options, getContext());
         RecyclerView recyclerView = root.findViewById(R.id.fav_recy);
         recyclerView.setHasFixedSize(false);
@@ -82,4 +79,5 @@ public class FavouritesFragment extends Fragment {
         super.onStop();
         prodadapter.stopListening();
     }
+
 }

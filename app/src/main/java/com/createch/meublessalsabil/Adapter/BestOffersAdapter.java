@@ -33,7 +33,7 @@ public class BestOffersAdapter extends FirestoreRecyclerAdapter<Item, BestOffers
     @Override
     protected void onBindViewHolder(@NonNull ProductHolder holder, int position, @NonNull Item model) {
         holder.setProductImage(model.getImage());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.findViewById(R.id.featured_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) context;
@@ -65,7 +65,7 @@ public class BestOffersAdapter extends FirestoreRecyclerAdapter<Item, BestOffers
         public void setProductImage(String productImage) {
 
             RequestOptions requestOptions = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override(100, 100);
+                    .fitCenter();
             Glide.with(context).load(Uri.parse(productImage)).apply(requestOptions).into(this.productImage);
 
         }

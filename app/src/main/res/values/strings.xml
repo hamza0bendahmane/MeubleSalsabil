@@ -47,4 +47,10 @@
     <string name="about_theapp">حول التطبيق</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="category">الفئة :</string>
+    <string name="width">العرض :</string>
+    <string name="height">الإرتفاع :</string>
+    <string name="length">الطول</string>
+    <string name="quantity">الكمية :</string>
+    <string name="about_us">تم انشاء التطبيق من طرف CREATECH DZ وهي شركة ....</string>
 </resources>

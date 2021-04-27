@@ -4,7 +4,7 @@
     android:id="@+id/featured_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="20dp"
+    android:layout_marginHorizontal="7dp"
     android:layout_marginVertical="15dp"
     android:gravity="center_horizontal"
     app:cardCornerRadius="20dp">
@@ -18,7 +18,7 @@
             android:id="@+id/delete"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:elevation="2dp"
             android:src="@drawable/delete_icon"
             app:layout_constraintHorizontal_weight="1"
@@ -29,38 +29,61 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/promotion_img"
+            android:layout_toStartOf="@id/pimg"
             android:layout_toEndOf="@id/delete"
             android:orientation="vertical"
             android:paddingHorizontal="5dp">
 
 
             <TextView
-                android:id="@+id/category_product"
+                android:id="@+id/ccc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/materials"
+                android:layout_below="@id/ddd"
                 android:layout_alignParentEnd="true"
-                android:text="الفئة : سرير"
+                android:text="الفئة : "
                 android:textColor="@color/dark_grey"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/name_product"
+                android:id="@+id/category_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="سرير خشبي"
-                android:textColor="@color/gold"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_below="@id/ddd"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/ccc"
+                android:text="gfh "
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/ddd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/materials"
+                android:layout_alignParentEnd="true"
+                android:text="المادة : "
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/materia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/materials"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/ccc"
+                android:text="خشب "
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
 
             <TextView
                 android:id="@+id/materials"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/name_product"
+                android:layout_below="@id/namecatroduct"
                 android:layout_alignParentEnd="true"
                 android:layout_marginVertical="8dp"
                 android:text="اللون :"
@@ -68,15 +91,30 @@
                 android:textColor="@color/dark_grey"
                 android:textSize="14sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/colors"
+            <TextView
+                android:id="@+id/namecatroduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/name_product"
-                android:layout_toStartOf="@id/materials"
-                android:visibility="gone"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="سرير خشبي"
+                android:textColor="@color/gold"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/color_c"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/namecatroduct"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@+id/materials"
+                app:cardCornerRadius="12dp"
+                app:tint="@color/gold" />
 
             <TextView
                 android:id="@+id/price"
@@ -85,9 +123,10 @@
                 android:layout_below="@id/category_product"
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="8dp"
                 android:text="1000 دج"
                 android:textColor="@color/gold"
-                android:textSize="24sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -127,13 +166,14 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/promotion_img"
+            android:id="@+id/pimg"
             android:layout_width="180dp"
-            android:layout_height="150dp"
+            android:layout_height="190dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
             android:adjustViewBounds="true"
             android:clickable="true"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/oip" />
     </RelativeLayout>
 

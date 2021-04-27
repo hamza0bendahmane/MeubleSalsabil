@@ -1,79 +1,66 @@
 package com.createch.meublessalsabil.models;
 
-import java.util.Date;
-
 public class Soldable {
 
-    String soldableID;
-    String soldableName;
-    Double soldablePrice;
-    int soldableQte;
-    String imageUrl;
-    Date postDate;
-    Category soldableCategory;
-    String soldableDescription;
 
-    public String getSoldableID() {
-        return soldableID;
+    String description;
+    String color;
+    int quantity;
+    String material;
+    String product_id;
+
+    public Soldable(String description, String color, int quantity, String material,
+                    String product_id) {
+        this.description = description;
+        this.color = color;
+        this.quantity = quantity;
+        this.material = material;
+        this.product_id = product_id;
     }
 
-    public void setSoldableID(String soldableID) {
-        this.soldableID = soldableID;
+    public Soldable() {
     }
 
-    public String getSoldableName() {
-        return soldableName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSoldableName(String soldableName) {
-        this.soldableName = soldableName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Double getSoldablePrice() {
-        return soldablePrice;
+    public String getColor() {
+        return color;
     }
 
-    public void setSoldablePrice(Double soldablePrice) {
-        this.soldablePrice = soldablePrice;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public int getSoldableQte() {
-        return soldableQte;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setSoldableQte(int soldableQte) {
-        this.soldableQte = soldableQte;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public Date getPostDate() {
-        return postDate;
+
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setPostDate(Date postDate) {
-        this.postDate = postDate;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
-    public Category getSoldableCategory() {
-        return soldableCategory;
-    }
 
-    public void setSoldableCategory(Category soldableCategory) {
-        this.soldableCategory = soldableCategory;
-    }
-
-    public String getSoldableDescription() {
-        return soldableDescription;
-    }
-
-    public void setSoldableDescription(String soldableDescription) {
-        this.soldableDescription = soldableDescription;
-    }
 }

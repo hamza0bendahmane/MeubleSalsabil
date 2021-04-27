@@ -2,6 +2,7 @@ package com.createch.meublessalsabil.Activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,6 +70,9 @@ public class Home extends AppCompatActivity {
         return false;
     }
 
+    public void back(View v) {
+        onBackPressed();
+    }
 
 
 

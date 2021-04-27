@@ -3,7 +3,7 @@ package com.createch.meublessalsabil.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item extends Soldable {
+public class Item {
 
     double length;
     double width;
@@ -15,13 +15,14 @@ public class Item extends Soldable {
     double price;
     String image;
     String name;
+    String promotion;
 
 
     public Item() {
     }
 
     public Item(double lenght, double height, double width, String category, ArrayList<String> colors, double quantity, ArrayList<String> materials,
-                double price, String image, String name) {
+                double price, String image, String name, String promotion) {
         this.length = lenght;
         this.width = width;
         this.colors = colors;
@@ -32,8 +33,17 @@ public class Item extends Soldable {
         this.price = price;
         this.image = image;
         this.name = name;
+        this.promotion = promotion;
 
 
+    }
+
+    public String getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(String promotion) {
+        this.promotion = promotion;
     }
 
     public double getHeight() {

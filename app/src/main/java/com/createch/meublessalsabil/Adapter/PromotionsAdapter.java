@@ -34,13 +34,16 @@ public class PromotionsAdapter extends FirestoreRecyclerAdapter<Promotion, Promo
     @Override
     protected void onBindViewHolder(@NonNull PromotionHolder holder, int position, @NonNull Promotion model) {
         holder.setProductImage(model.getImage());
-        holder.setDiscount(String.valueOf(model.getDiscount()));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.setDiscount(String.valueOf(model.getDiscount()), model.getEndDate());
+        holder.productImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) context;
                 Bundle bundle = new Bundle();
-                bundle.putString("ref", model.getProductId());
+                bundle.putString("ref", model.getProduct_id());
+                bundle.putString("promotion", getSnapshots().getSnapshot(position).getId());
                 Fragment fragment = new ProductShow();
                 fragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().
@@ -61,17 +64,18 @@ public class PromotionsAdapter extends FirestoreRecyclerAdapter<Promotion, Promo
     public class PromotionHolder extends RecyclerView.ViewHolder {
 
         ImageView productImage;
-        TextView discount;
+        TextView discount, date;
 
         public PromotionHolder(@NonNull View itemView) {
             super(itemView);
-            productImage = itemView.findViewById(R.id.promotion_img);
+            productImage = itemView.findViewById(R.id.pimg);
             discount = itemView.findViewById(R.id.delete);
-
+            date = itemView.findViewById(R.id.discount_desc);
         }
 
-        public void setDiscount(String discountpercentage) {
+        public void setDiscount(String discountpercentage, String date) {
             discount.setText(context.getString(R.string.discount) + " " + discountpercentage + " %");
+            this.date.setText(date);
         }
 
         public void setProductImage(String im) {

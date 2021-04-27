@@ -1,14 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProductShow">
+    android:background="@color/greys"
+    android:padding="2dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/greys"
+        android:padding="3dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/wlcm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/back"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text=" تفاصيل المنتج"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="15dp"
+            android:onClick="back"
+            android:src="@drawable/arrow_ack"
+            app:tint="@color/black" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/user_infos_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wlcm"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:elevation="8dp"
+            android:padding="4dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
+
+            <RelativeLayout
+                android:id="@+id/promotion_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <!--Textview for displaying our Course Name-->
+
+
+                <!--Textview for displaying our Course Duration-->
+                <TextView
+                    android:id="@+id/order_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
+                    android:text="تخفيض :"
+                    android:textColor="#f00"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!--Textview for displaying our Course Description-->
+                <TextView
+                    android:id="@+id/promotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/order_number"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
+                    android:text="20 %"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="متوفر الى غاية :"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <!--Textview for displaying our Course Description-->
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/date"
+                    android:layout_alignParentStart="true"
+                    android:text=" 22/02/14 "
+                    android:textColor="@color/dark_grey"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/soldables"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_infos_card"
+            android:layout_alignParentStart="true"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="@color/white"
+            android:elevation="8dp"
+            android:padding="4dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/back_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+
+                <RelativeLayout
+                    android:id="@+id/imicon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/category_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="الفئة : سرير"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/name_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="سرير خشبي"
+                        android:textColor="@color/gold"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/materials"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name_product"
+                        android:layout_alignParentEnd="true"
+                        android:text="المادة : خشب"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/image_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="7dp"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:id="@+id/imigcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp">
+
+                    <RelativeLayout
+                        android:id="@+id/titgle_namae"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/titgle_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="اللون :"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/ttt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/price"
+                            android:text="السعر النهائي :"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="7000 dzd"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/colors"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_toStartOf="@id/titgle_name"
+
+                            />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/titgle_namae"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="8dp"
+                        android:text="الكمية : 45"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quantity"
+                        android:text="الطول : 4.5"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/width"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quantity"
+                        android:layout_centerHorizontal="true"
+                        android:text="العرض : 7"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/length"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/quantity"
+                        android:layout_alignParentEnd="true"
+                        android:text="الإرتفاع : 1"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp" />
+
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/soldables"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/facebook_blue"
+                android:elevation="2dp"
+                android:onClick="cancelOrder"
+                android:text="إضافة الى السلة"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:translationZ="3dp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/shoplist"
+                app:iconGravity="end"
+                app:iconSize="24dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/french_beige"
+                android:elevation="2dp"
+                android:onClick="submitOrder"
+                android:text="إضافة الى المفضلة"
+                android:textColor="@color/white"
+                android:translationZ="3dp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/favourite"
+                app:iconGravity="end"
+                app:iconSize="24dp"
+
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

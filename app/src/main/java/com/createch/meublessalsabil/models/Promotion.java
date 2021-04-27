@@ -1,22 +1,22 @@
 package com.createch.meublessalsabil.models;
 
-import java.sql.Date;
+
 
 public class Promotion {
 
 
     String image;
-    String productId;
+    String product_id;
     int discount;
-    // Date endDate ;
+    String endDate;
 
     public Promotion() {
     }
 
-    public Promotion(String image, String productId, Date endDate, int discount) {
+    public Promotion(String image, String productId, String endDate, int discount) {
         this.image = image;
-        this.productId = productId;
-        //  this.endDate = endDate;
+        this.product_id = productId;
+        this.endDate = endDate;
         this.discount = discount;
     }
 
@@ -36,19 +36,19 @@ public class Promotion {
         this.discount = discount;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
-   /* public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
-    }*/
+    }
 
-  /*  public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }*/
+    }
 }

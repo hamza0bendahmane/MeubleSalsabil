@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.createch.meublessalsabil.Activity.Notifications;
 import com.createch.meublessalsabil.Adapter.ShopListAdapter;
 import com.createch.meublessalsabil.R;
-import com.createch.meublessalsabil.models.Item;
+import com.createch.meublessalsabil.models.Soldable;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -63,13 +63,13 @@ public class ShopListFragment extends Fragment {
     }
 
     void fetchShopList(View root) {
-        CollectionReference ref = FirebaseFirestore.getInstance().collection("Products");
-        //    .collection("Temporary").document("ShopList").
-        //    collection(thisUser.getUid());
+        CollectionReference ref = FirebaseFirestore.getInstance()
+                .collection("Temporary").document("ShopList").
+                        collection(thisUser.getUid());
         Query query = ref;
-        FirestoreRecyclerOptions<Item> options;
-        options = new FirestoreRecyclerOptions.Builder<Item>()
-                .setQuery(query, Item.class)
+        FirestoreRecyclerOptions<Soldable> options;
+        options = new FirestoreRecyclerOptions.Builder<Soldable>()
+                .setQuery(query, Soldable.class)
                 .build();
         adapter = new ShopListAdapter(options, getContext());
         recyclerView = root.findViewById(R.id.nestedScrollView);
@@ -86,11 +86,18 @@ public class ShopListFragment extends Fragment {
 
     private void setTotal() {
         double price = 0.0;
+        adapter.notifyDataSetChanged();
         TextView total = getView().findViewById(R.id.total);
         for (int i = 0; i < recyclerView.getChildCount(); i++) {
-            Item soldi = adapter.getItem(i);
-            price = price + soldi.getPrice();
-            Log.d("hbhb", "setTotal: " + price);
+            adapter.notifyItemChanged(i);
+            Soldable soldi = adapter.getItem(i);
+            TextView vv = recyclerView.getChildAt(i).findViewById(R.id.price);
+            Log.d("hbhb", "setTotal: price" + price);
+
+            price = price + (Double.valueOf(vv.getText().toString()) * soldi.getQuantity());
+            Log.d("hbhb", "quant: " + soldi.getQuantity());
+            Log.d("hbhb", "quant: " + Double.valueOf(vv.getText().toString()));
+
         }
         total.setText(String.valueOf(price));
     }
@@ -99,6 +106,13 @@ public class ShopListFragment extends Fragment {
     public void onStart() {
         super.onStart();
         adapter.startListening();
+        setTotal();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTotal();
     }
 
     @Override

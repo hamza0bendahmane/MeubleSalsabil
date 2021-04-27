@@ -34,12 +34,13 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
     @Override
     protected void onBindViewHolder(@NonNull ProductHolder holder, int position, @NonNull Item model) {
         holder.setProductImage(model.getImage());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.productImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) context;
                 Bundle bundle = new Bundle();
                 bundle.putString("ref", getSnapshots().getSnapshot(position).getId());
+                bundle.putString("promotion", model.getPromotion());
                 Fragment fragment = new ProductShow();
                 fragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().
@@ -70,7 +71,7 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
         public void setProductImage(String productImage) {
 
             RequestOptions requestOptions = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override(100, 100);
+                    .fitCenter();
             Glide.with(context).load(Uri.parse(productImage)).apply(requestOptions).into(this.productImage);
 
         }
