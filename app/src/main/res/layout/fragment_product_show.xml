@@ -101,7 +101,7 @@
 
                 <!--Textview for displaying our Course Description-->
                 <TextView
-                    android:id="@+id/time"
+                    android:id="@+id/phone_moderator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/date"
@@ -149,7 +149,7 @@
 
 
                     <TextView
-                        android:id="@+id/category_product"
+                        android:id="@+id/quantity_prod"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -306,7 +306,6 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/facebook_blue"
                 android:elevation="2dp"
-                android:onClick="cancelOrder"
                 android:text="إضافة الى السلة"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -324,7 +323,6 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/french_beige"
                 android:elevation="2dp"
-                android:onClick="submitOrder"
                 android:text="إضافة الى المفضلة"
                 android:textColor="@color/white"
                 android:translationZ="3dp"

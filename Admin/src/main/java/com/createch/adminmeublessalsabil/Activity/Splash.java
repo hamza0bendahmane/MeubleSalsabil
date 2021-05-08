@@ -1,26 +1,17 @@
 package com.createch.adminmeublessalsabil.Activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
 
-import androidx.annotation.NonNull;
+import android.app.FragmentManager;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.createch.adminmeublessalsabil.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Splash extends AppCompatActivity {
 
     FragmentManager manager = getFragmentManager();
-    FragmentTransaction transaction = manager.beginTransaction();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

@@ -1,53 +1,52 @@
 package com.createch.adminmeublessalsabil.Model;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Order {
 
-    //Timestamp date;
+    long date;
     int totalPrice;
-    User user;
+    String userId;
     ArrayList<String> comments;
     String state;
-    ArrayList<Soldable> soldItems;
+    ArrayList<String> soldItems;
 
-    public Order(Timestamp date, int totalPrice, ArrayList<String> comments, String state, ArrayList<Soldable> soldItems,User user) {
-       // this.date = date;
+    public Order(long date, int totalPrice, ArrayList<String> comments, String state, ArrayList<String> soldItems, String userId) {
+        // this.date = date;
         this.totalPrice = totalPrice;
         this.comments = comments;
         this.state = state;
         this.soldItems = soldItems;
-        this.user = user;
+        this.userId = userId;
     }
 
-    public User getUser() {
-        return user;
+    public String getString() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setString(String userId) {
+        this.userId = userId;
     }
 
-    public ArrayList<Soldable> getSoldItems() {
+    public ArrayList<String> getSoldItems() {
         return soldItems;
     }
 
-    public void setSoldItems(ArrayList<Soldable> soldItems) {
+    public void setSoldItems(ArrayList<String> soldItems) {
         this.soldItems = soldItems;
     }
 
     public Order() {
     }
 
-  /*  public Timestamp getDate() {
-      return date;
- }
+    public long getDate() {
+        return date;
+    }
 
-    public void setDate(Timestamp date) {
+    public void setDate(long date) {
         this.date = date;
     }
-*/
+
     public int getTotalPrice() {
         return totalPrice;
     }

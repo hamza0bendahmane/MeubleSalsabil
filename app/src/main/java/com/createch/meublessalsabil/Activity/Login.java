@@ -1,12 +1,10 @@
 package com.createch.meublessalsabil.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,13 +15,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.createch.meublessalsabil.R;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Locale;
+import java.util.Arrays;
 
 public class Login extends AppCompatActivity {
 
@@ -31,18 +41,65 @@ public class Login extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private TextInputEditText uEmail, uPassword;
     private TextView uRegisterButton;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private Button uLoginBtn;
-
-    /*TODO*/
-    //save changed lang
+    CallbackManager callbackManager;
+    LoginButton loginButton;
+    AccessTokenTracker accessTokenTracker;
+    AccessToken accessToken;
+    ProfileTracker profileTracker;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Theme_MeublesSalsabil);
-        checkLogged();
         setContentView(R.layout.activity_login);
+        callbackManager = CallbackManager.Factory.create();
+        activity = this;
+        loginButton = findViewById(R.id.facebook_login_button);
+        loginButton.setPermissions(Arrays.asList("email", "public_profile"));
+        // If you are using in a fragment, call loginButton.setFragment(this);
 
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                handleThisToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                Log.d("hbhb", "canceled fb ");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                //  printKeyHash();
+                // App code
+                Log.d("hbhb", "fb exception : " + exception.getMessage() + " " + exception.getCause());
+            }
+        });
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+                // Set the access token using
+                // currentAccessToken when it's loaded or set.
+            }
+        };
+        // If the access token is available already assign it.
+        accessToken = AccessToken.getCurrentAccessToken();
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(
+                    Profile oldProfile,
+                    Profile currentProfile) {
+                // App code
+            }
+        };
         uEmail = findViewById(R.id.email_edit_text);
         uPassword = findViewById(R.id.password_edit_text);
         uRegisterButton = findViewById(R.id.textView);
@@ -53,10 +110,10 @@ public class Login extends AppCompatActivity {
         langBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (getCurrentLang() == "ar") {
-                    changeLang("fr");
+                if (Application.getCurrentLang(getApplicationContext()) == "ar") {
+                    Application.changeLang("fr", activity, true);
                 } else {
-                    changeLang("ar");
+                    Application.changeLang("ar", activity, true);
                 }
             }
         });
@@ -110,38 +167,46 @@ public class Login extends AppCompatActivity {
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), Home.class));
-        }
-
-    }
-
-    private void checkLogged() {
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(this, Home.class);
-            startActivity(intent);
             finish();
         }
+
     }
 
+    private void handleThisToken(AccessToken token) {
+        AuthCredential authCredential = FacebookAuthProvider.getCredential(token.getToken());
+        fAuth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(getApplicationContext(), Home.class));
 
-    private void changeLang(String lang) {
-        Locale local = new Locale(lang);
-        Resources res = getBaseContext().getResources();
-        DisplayMetrics displayMetrics = res.getDisplayMetrics();
-        Configuration configuration = res.getConfiguration();
-        configuration.locale = local;
-        res.updateConfiguration(configuration, displayMetrics);
-        Toast.makeText(this, getResources().getString(R.string.lang_updated), Toast.LENGTH_SHORT).show();
-        Intent refresh = new Intent (getApplicationContext(), Login.class);
-        startActivity(refresh);
-        finish();
+                } else {
+                    Log.d("hbhb", "message : " + task.getException().getMessage());
+                    Log.d("hbhb", "cause : " + task.getException().getCause());
+                }
+            }
+        });
     }
 
-    private String getCurrentLang(){
-        String language = getResources().getConfiguration().locale.getLanguage();
-        return language;
+    public void resetPass(View vv) {
+        startActivity(new Intent(this, ForgetPassword.class));
     }
+
 
     private boolean isPasswordValid(String text) {
         return text != null && text.length() >= 8;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        accessTokenTracker.stopTracking();
+        profileTracker.stopTracking();
     }
 }

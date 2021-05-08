@@ -1,12 +1,52 @@
 package com.createch.meublessalsabil.models;
 
-public class User {
 
+public class User {
     String email;
-    String firstName,lastName;
-    String phoneNumber;
-    String address;
-    String imageUrl;
+    String fname;
+    String lname;
+    String phone;
+    String photo;
+    Adresse adr;
+    boolean blocked;
+
+    public User() {
+    }
+
+    public User(String email, String fname, String phone, String photo, Adresse adr, boolean blocked, String lname) {
+        this.email = email;
+        this.fname = fname;
+        this.phone = phone;
+        this.photo = photo;
+        this.adr = adr;
+        this.lname = lname;
+        this.blocked = blocked;
+    }
+
+
+    public Adresse getAdr() {
+        return adr;
+    }
+
+    public void setAdr(Adresse adr) {
+        this.adr = adr;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getEmail() {
         return email;
@@ -16,43 +56,28 @@ public class User {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFname() {
+        return fname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getLname() {
+        return lname;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getZipCode() {
-        return imageUrl;
-    }
-
-    public void setZipCode(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

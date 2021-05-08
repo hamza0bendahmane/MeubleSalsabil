@@ -1,6 +1,6 @@
 package com.createch.meublessalsabil.fragments;
 
-import android.content.Context;
+import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +21,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.createch.meublessalsabil.Adapter.ColorsAdapter;
+import com.createch.meublessalsabil.Adapter.MaterialsAdapter;
 import com.createch.meublessalsabil.R;
 import com.createch.meublessalsabil.models.Item;
 import com.createch.meublessalsabil.models.Promotion;
+import com.createch.meublessalsabil.models.Soldable;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +38,6 @@ import java.util.List;
 
 public class ProductShow extends Fragment {
     String ref, prom_ref;
-    Context context = getContext();
     Item model;
     Promotion prom_model;
     MaterialButton add_cart, add_fav;
@@ -61,7 +64,7 @@ public class ProductShow extends Fragment {
         View promotionView = itemView.findViewById(R.id.promotion_layout);
         productImage = itemView.findViewById(R.id.image_product);
         productColors = itemView.findViewById(R.id.colors);
-        productCategory = itemView.findViewById(R.id.category_product);
+        productCategory = itemView.findViewById(R.id.quantity_prod);
         productHeight = itemView.findViewById(R.id.height);
         productName = itemView.findViewById(R.id.name_product);
         productLength = itemView.findViewById(R.id.length);
@@ -70,7 +73,7 @@ public class ProductShow extends Fragment {
         productPrice = itemView.findViewById(R.id.price);
         productWidth = itemView.findViewById(R.id.width);
         discount = itemView.findViewById(R.id.promotion);
-        endate = itemView.findViewById(R.id.time);
+        endate = itemView.findViewById(R.id.phone_moderator);
 
         if (b != null) {
             ref = b.getString("ref");
@@ -80,20 +83,7 @@ public class ProductShow extends Fragment {
             getActivity().onBackPressed();
         add_cart = view.findViewById(R.id.add_cart);
         add_fav = view.findViewById(R.id.add_favorite);
-        add_fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference().child("Temporary").child("Favorites").
-                        child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ref).setValue("");
-            }
-        });
 
-        add_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //       FirebaseFirestore.getInstance().collection("Temporary").document()                        .collection(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            }
-        });
 
         FirebaseFirestore.getInstance().collection("Products")
                 .document(ref).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -126,6 +116,61 @@ public class ProductShow extends Fragment {
             }
         });
 
+        add_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog d = new Dialog(getContext());
+                d.setContentView(R.layout.choose_color_material);
+                // colors ...
+                ColorsAdapter ada = new ColorsAdapter(getContext(), model.getColors(), true);
+                RecyclerView colorsRec = d.findViewById(R.id.colors_recy);
+                colorsRec.setHasFixedSize(true);
+                colorsRec.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                colorsRec.setAdapter(ada);
+                // materials ...
+                MaterialsAdapter adap = new MaterialsAdapter(getContext(), model.getMaterials());
+                RecyclerView materialsRec = d.findViewById(R.id.materials_recy);
+                materialsRec.setHasFixedSize(true);
+                materialsRec.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                materialsRec.setAdapter(adap);
+                d.findViewById(R.id.cancel_or).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        d.dismiss();
+                    }
+                });
+                d.findViewById(R.id.submit_or).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (ada.choosed_position == -1 || adap.choosed_position == -1)
+                            Toast.makeText(getContext(), "اختر اولا ", Toast.LENGTH_SHORT).show();
+                        else {
+                            Soldable ss = new Soldable("", model.getColors().get(ada.choosed_position), 1, model.getMaterials().
+                                    get(adap.choosed_position));
+                            FirebaseDatabase.getInstance().getReference().child("Temporary").child("ShopList").
+                                    child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ref).setValue(ss).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    d.dismiss();
+
+                                }
+                            });
+
+                        }
+                    }
+                });
+                d.show();
+
+            }
+        });
+        add_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference().child("Temporary").child("Favorites").
+                        child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ref).setValue("");
+            }
+        });
 
     }
 
@@ -158,7 +203,7 @@ public class ProductShow extends Fragment {
     }
 
     public void setProductPrice(String productPricee) {
-        productPrice.setText(productPricee);
+        productPrice.setText(productPricee + " " + getActivity().getResources().getString(R.string.currency));
     }
 
     public void setProductCategory(String productCategorye) {
@@ -178,9 +223,9 @@ public class ProductShow extends Fragment {
     }
 
     public void setProductColors(List<String> productColorse) {
-        ColorsAdapter ada = new ColorsAdapter(productColorse);
+        ColorsAdapter ada = new ColorsAdapter(getContext(), productColorse, false);
         productColors.setHasFixedSize(true);
-        productColors.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        productColors.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         productColors.setAdapter(ada);
     }
 

@@ -1,5 +1,6 @@
 package com.createch.meublessalsabil.Adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,15 @@ import java.util.List;
 
 public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolder> {
     List<String> colors;
+    public int choosed_position = -1;
+    boolean selectable;
+    Context context;
 
-    public ColorsAdapter(List<String> colors) {
+    public ColorsAdapter(Context context, List<String> colors, boolean selectable) {
         this.colors = colors;
+        this.context = context;
+        this.selectable = selectable;
+
     }
 
 
@@ -32,7 +39,24 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolde
     @Override
     public void onBindViewHolder(@NonNull ColorHolder holder, int position) {
         holder.image.setCardBackgroundColor(Color.parseColor(colors.get(position)));
+        if (selectable) {
 
+            if (choosed_position == position)
+                holder.itemView.setBackgroundColor(Color.parseColor("#000000"));
+            else
+                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    choosed_position = position;
+                    notifyDataSetChanged();
+
+
+                }
+            });
+
+        }
 
     }
 

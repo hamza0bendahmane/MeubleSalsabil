@@ -49,9 +49,8 @@
             android:id="@+id/avatar_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@null"
             android:backgroundTint="@color/light_grey"
-            app:srcCompat="@drawable/googleg_standard_color_18" />
+            />
 
     </androidx.cardview.widget.CardView>
 
@@ -98,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/full_name"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/email"
@@ -108,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email_display"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/phone"
@@ -119,7 +118,7 @@
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:text="@string/phone_display"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -141,6 +140,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/infos_card"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp">
 
@@ -204,6 +204,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/lang_card"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_margin="10dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -258,6 +261,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="320dp"
+
             android:layout_height="60dp"
             android:layout_margin="5dp"
             app:cardCornerRadius="18dp">
@@ -265,6 +269,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/logout_card"
+                android:clickable="true"
+                android:focusable="true"
+
                 android:layout_margin="10dp">
 
                 <androidx.appcompat.widget.AppCompatImageView

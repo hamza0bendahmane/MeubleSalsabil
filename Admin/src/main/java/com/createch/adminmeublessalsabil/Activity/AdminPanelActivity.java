@@ -33,6 +33,7 @@ public class AdminPanelActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp();
 
+
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

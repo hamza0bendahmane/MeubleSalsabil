@@ -18,12 +18,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class Home extends AppCompatActivity {
     BottomNavigationView navView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Theme_MeublesSalsabil);
         setContentView(R.layout.activity_home);
+        Navigate();
+
+    }
+
+    private void Navigate() {
         navView = findViewById(R.id.nav_view);
 
         //FirebaseApp.initializeApp();
@@ -49,14 +52,6 @@ public class Home extends AppCompatActivity {
         });
 
         navView.setSelectedItemId(R.id.navigation_home);
-
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        navView.setSelectedItemId(R.id.navigation_home);
-
     }
 
     private boolean navigateToFragment(Fragment fragment) {
@@ -71,8 +66,12 @@ public class Home extends AppCompatActivity {
     }
 
     public void back(View v) {
-        onBackPressed();
+        getSupportFragmentManager().popBackStack();
+
+
     }
+
+
 
 
 

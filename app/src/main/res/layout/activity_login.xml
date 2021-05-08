@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.Login"
@@ -89,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:hint="@string/nom" />
+                    android:hint="@string/email" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,55 +115,39 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/remember_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/password_text_input" />
 
-            <TextView
-                style="@style/FontUltra"
-                android:textSize="13sp"
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/remember_me"
-                app:layout_constraintBottom_toBottomOf="@id/remember_checkbox"
-                app:layout_constraintRight_toLeftOf="@id/remember_checkbox"
-                app:layout_constraintTop_toBottomOf="@id/password_text_input" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/forget_password"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
 
-            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/cairo_french"
+                android:layout_height="wrap_content"
+                android:onClick="resetPass"
+                android:textColor="@color/indigo_blue"
                 android:clickable="true"
-                style="@style/FontUltra"
-                android:textSize="13sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/forget_pass"
-                app:layout_constraintBottom_toBottomOf="@id/remember_checkbox"
+                android:textSize="13sp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/textView3"
                 app:layout_constraintTop_toBottomOf="@id/password_text_input" />
 
             <Button
-                style="@style/FontUltra"
                 android:id="@+id/login_button"
+                style="@style/FontUltra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/next_btn"
                 app:layout_constraintBottom_toTopOf="@id/facebook_login_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/remember_checkbox" />
+                app:layout_constraintTop_toBottomOf="@+id/forget_password" />
 
-            <Button
+            <com.facebook.login.widget.LoginButton
                 android:id="@+id/facebook_login_button"
-                style="@style/Widget.MeublesSalsabil.OutlineButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/fb_login"
-                app:icon="@drawable/fb_logo"
                 app:iconGravity="start"
                 app:iconSize="23dp"
                 app:iconTint="@null"

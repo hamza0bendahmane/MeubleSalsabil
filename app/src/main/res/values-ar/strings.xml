@@ -42,4 +42,7 @@
     <string name="logout">تسجيل الخروج</string>
     <string name="personal_info">المعلومات الشخصية</string>
     <string name="langue">اللغة</string>
+    <string name="currency">دج</string>
+    <string name="merci">شكرا</string>
+    <string name="about_theapp">حول التطبيق</string>
 </resources>

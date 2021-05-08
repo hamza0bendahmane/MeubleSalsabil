@@ -7,15 +7,12 @@ public class Soldable {
     String color;
     int quantity;
     String material;
-    String product_id;
 
-    public Soldable(String description, String color, int quantity, String material,
-                    String product_id) {
+    public Soldable(String description, String color, int quantity, String material) {
         this.description = description;
         this.color = color;
         this.quantity = quantity;
         this.material = material;
-        this.product_id = product_id;
     }
 
     public Soldable() {
@@ -52,15 +49,5 @@ public class Soldable {
     public void setMaterial(String material) {
         this.material = material;
     }
-
-
-    public String getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
-    }
-
 
 }

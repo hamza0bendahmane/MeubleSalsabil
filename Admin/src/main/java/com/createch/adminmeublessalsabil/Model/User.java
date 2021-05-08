@@ -1,42 +1,33 @@
 package com.createch.adminmeublessalsabil.Model;
 
-
 public class User implements Comparable {
     String email;
     String fname;
+    String lname;
     String phone;
     String photo;
-    String wilaya;
-    String adr;
+    Adresse adr;
     boolean blocked;
 
     public User() {
     }
 
-    public User(String email, String fname, String phone, String photo, String wilaya, String adr, boolean blocked) {
+    public User(String email, String fname, String phone, String photo, Adresse adr, boolean blocked, String lname) {
         this.email = email;
         this.fname = fname;
         this.phone = phone;
         this.photo = photo;
-        this.wilaya = wilaya;
         this.adr = adr;
+        this.lname = lname;
         this.blocked = blocked;
     }
 
 
-    public String getWilaya() {
-        return wilaya;
-    }
-
-    public void setWilaya(String wilaya) {
-        this.wilaya = wilaya;
-    }
-
-    public String getAdr() {
+    public Adresse getAdr() {
         return adr;
     }
 
-    public void setAdr(String adr) {
+    public void setAdr(Adresse adr) {
         this.adr = adr;
     }
 
@@ -80,14 +71,21 @@ public class User implements Comparable {
         this.phone = phone;
     }
 
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
 
     @Override
     public int compareTo(Object o) {
-        if (o instanceof User){
+        if (o instanceof User) {
             User oo = (User) o;
-            return  this.getFname().compareTo(oo.getFname());
+            return this.getFname().compareTo(oo.getFname());
 
-        }else
+        } else
             return 1;
     }
 }

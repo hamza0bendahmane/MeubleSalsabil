@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
     PromotionsAdapter promadapter;
     BestOffersAdapter boadapter;
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
-    DocumentReference documentReference = db.collection("Users").document(user.getUid());
+    DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid());
 
     public HomeFragment() {
 

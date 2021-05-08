@@ -44,7 +44,6 @@
     <string name="phone_display">%s</string>
     <string name="personal_info">Informations personnelles</string>
     <string name="langue">Langue</string>
-    <string name="about_theapp">حول التطبيق</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="category">الفئة :</string>
@@ -53,4 +52,14 @@
     <string name="length">الطول</string>
     <string name="quantity">الكمية :</string>
     <string name="about_us">تم انشاء التطبيق من طرف CREATECH DZ وهي شركة ....</string>
+    <string name="currency">دج</string>
+    <string name="facebook_app_id" translatable="false">748764105761658</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb748764105761658</string>
+
+    <string name="merci">شكرا !</string>
+    <string name="about_theapp">About the App</string>
+    <string name="empty">فارغ</string>
+    <string name="shouldbe_same">يجب ان يتطابقا</string>
+    <string name="updated">تم التحديث</string>
+    <string name="pass_wrong">كلمة السر خاطئة</string>
 </resources>

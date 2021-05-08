@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/featured_card"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="15dp"
     android:gravity="center_horizontal"
+    android:padding="8dp"
     app:cardCornerRadius="20dp">
 
     <RelativeLayout
@@ -36,12 +37,42 @@
 
 
             <TextView
-                android:id="@+id/category_product"
+                android:id="@+id/quantity_prod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/materials"
                 android:layout_alignParentEnd="true"
-                android:text="الفئة : سرير"
+                android:text="الفئة : "
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/materials"
+                android:layout_toStartOf="@+id/quantity_prod"
+                android:text=""
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/mat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quantity_prod"
+                android:layout_alignParentEnd="true"
+                android:text="المادة : "
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/material"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_below="@id/quantity_prod"
+                android:layout_toStartOf="@+id/mat"
+                android:text=""
                 android:textColor="@color/dark_grey"
                 android:textSize="16sp" />
 
@@ -51,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:text="سرير خشبي"
+                android:text=" "
                 android:textColor="@color/gold"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -63,7 +94,7 @@
                 android:layout_below="@id/namecatroduct"
                 android:layout_alignParentEnd="true"
                 android:layout_marginVertical="8dp"
-                android:text="اللون :"
+                android:text="اللون : "
 
                 android:textColor="@color/dark_grey"
                 android:textSize="14sp" />
@@ -72,19 +103,18 @@
                 android:id="@+id/colors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
                 android:layout_below="@id/namecatroduct"
-                android:layout_toStartOf="@id/materials"
-
-                />
+                android:layout_toStartOf="@+id/materials" />
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/category_product"
+                android:layout_below="@+id/material"
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="5dp"
-                android:text="1000 دج"
+                android:text=" "
                 android:textColor="@color/gold"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -97,8 +127,7 @@
             android:layout_alignParentEnd="true"
             android:adjustViewBounds="true"
             android:clickable="true"
-            android:scaleType="center"
-            app:srcCompat="@drawable/oip" />
+            android:scaleType="fitXY" />
     </RelativeLayout>
 
 
