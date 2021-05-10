@@ -12,15 +12,17 @@ public class Order {
     double totalPrice;
     double delivery;
     String userId;
+    Adresse adresse;
     ArrayList<String> comments;
     String state;
     String soldItems;
 
-    public Order(HashMap<String, Object> date, double totalPrice, double delivery, ArrayList<String> comments, String state, String soldItems, String userId) {
+    public Order(HashMap<String, Object> date, double totalPrice, Adresse adresse, double delivery, ArrayList<String> comments, String state, String soldItems, String userId) {
         this.date = date;
         this.totalPrice = totalPrice;
         this.comments = comments;
         this.state = state;
+        this.adresse = adresse;
         this.soldItems = soldItems;
         this.userId = userId;
         this.delivery = delivery;
@@ -47,6 +49,14 @@ public class Order {
 
     public HashMap<String, Object> getDate() {
         return date;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
 
     public void setDate(HashMap<String, Object> date) {

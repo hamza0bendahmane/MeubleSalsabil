@@ -62,4 +62,5 @@
     <string name="shouldbe_same">يجب ان يتطابقا</string>
     <string name="updated">تم التحديث</string>
     <string name="pass_wrong">كلمة السر خاطئة</string>
+    <string name="verify_mail">"يبدو انك لم تفعل حسابك , تفقد بريدك الوارد في ايميلك "</string>
 </resources>

@@ -38,7 +38,7 @@ public class BestOffersAdapter extends FirestoreRecyclerAdapter<Item, BestOffers
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) context;
                 activity.getSupportFragmentManager().beginTransaction().
-                        replace(R.id.nav_host_fragment, new ProductShow())
+                        replace(R.id.nav_host_fragment, new ProductShow()).addToBackStack("app")
                         .commit();
             }
         });

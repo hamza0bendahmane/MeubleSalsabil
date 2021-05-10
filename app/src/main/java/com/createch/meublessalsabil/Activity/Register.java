@@ -3,12 +3,9 @@ package com.createch.meublessalsabil.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.createch.meublessalsabil.R;
+import com.createch.meublessalsabil.models.Adresse;
+import com.createch.meublessalsabil.models.User;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -42,7 +41,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
@@ -170,7 +168,7 @@ public class Register extends AppCompatActivity {
                             user.put("blocked", false);
                             user.put("photo", "https://www.universal-trailers.co.uk/wp-content/uploads/2018/03/Person-placeholder.jpg");
                             user.put("phone", "");
-                            user.put("adr", null);
+                            user.put("adresse", new Adresse());
 
                             //Adding document to firestore
                             db.collection("Users")
@@ -179,13 +177,9 @@ public class Register extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    startActivity(new Intent(getApplicationContext(), Home.class));
-                                                    finish();
-                                                }
-                                            });
+                                            startActivity(new Intent(getApplicationContext(), Home.class));
+                                            finish();
+
 
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
@@ -211,29 +205,13 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        if(fAuth.getCurrentUser()!=null){
+        if(fAuth.getCurrentUser()!=null) {
             startActivity(new Intent(getApplicationContext(), Home.class));
+            finish();
         }
 
     }
 
-    private void changeLang(String lang){
-        Locale local = new Locale(lang);
-        Resources res = getBaseContext().getResources();
-        DisplayMetrics displayMetrics = res.getDisplayMetrics();
-        Configuration configuration = res.getConfiguration();
-        configuration.locale = local;
-        res.updateConfiguration(configuration, displayMetrics);
-        Toast.makeText(this, getResources().getString(R.string.lang_updated), Toast.LENGTH_SHORT).show();
-        Intent refresh = new Intent(getApplicationContext(), Register.class);
-        startActivity(refresh);
-        finish();
-    }
-
-    private String getCurrentLang() {
-        String language = getResources().getConfiguration().locale.getLanguage();
-        return language;
-    }
 
     private void handleThisToken(AccessToken token) {
         AuthCredential authCredential = FacebookAuthProvider.getCredential(token.getToken());
@@ -241,38 +219,36 @@ public class Register extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(getApplicationContext(), Home.class));
-                    finish();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("fname", task.getResult().getUser().getDisplayName().split(" ")[0]);
-                    user.put("lname", task.getResult().getUser().getDisplayName().split(" ")[1]);
-                    user.put("email", task.getResult().getUser().getEmail());
-                    user.put("photo", String.valueOf(task.getResult().getUser().getPhotoUrl()));
-                    user.put("phone", task.getResult().getUser().getPhoneNumber());
-                    user.put("adr", null);
-
-                    //Adding document to firestore
-                    db.collection("Users")
-                            .document(task.getResult().getUser().getUid())
-                            .set(user)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d("hbhb", "gggggggg");
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("hbhb", "Error adding document", e);
-                        }
-                    });
-
-
+                    // Sign in success, update UI with the signed-in user's information
+                    boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+                    if (isNewUser) {
+                        RegisterNewUser(task.getResult().getUser());
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        finish();
+                    }
                 } else {
-                    Log.d("hbhb", "message : " + task.getException().getMessage());
-                    Log.d("hbhb", "cause : " + task.getException().getCause());
+                    // If sign in fails, display a message to the user.
+                    Log.w("hbhb", "signInWithCredential:failure", task.getException());
+                    Toast.makeText(getApplicationContext(), "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                    //TODO: HANDLE BAD LOGIN
                 }
+
+            }
+        });
+    }
+
+    private void RegisterNewUser(FirebaseUser user) {
+        User userdata = new User(user.getDisplayName().split(" ")[0], user.getDisplayName().split(" ")[1], user.getEmail(),
+                user.getPhoneNumber(), new Adresse(), user.getPhotoUrl() + "/picture?height=500", false);
+        FirebaseFirestore.getInstance().collection("Users")
+                .document(user.getUid()).set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                startActivity(new Intent(getApplicationContext(), Home.class));
+                finish();
+
             }
         });
     }

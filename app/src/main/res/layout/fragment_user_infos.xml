@@ -117,21 +117,45 @@
                         android:id="@+id/edit_name_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_below="@id/imicon"
-                        android:layout_marginVertical="5dp"
-                        android:visibility="gone">
+                        android:layout_marginVertical="5dp">
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fedittext_namee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+
+                            android:elevation="2dp"
+                            android:hint="enter the first name here"
+                            android:translationZ="3dp"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/fedittext_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:inputType="textPersonName"
+                                android:translationZ="3dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/edittext_namee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginVertical="30dp"
                             android:layout_marginStart="30dp"
+                            android:layout_below="@+id/fedittext_namee"
                             android:layout_marginEnd="30dp"
-
+                            android:layout_marginBottom="20dp"
                             android:elevation="2dp"
-                            android:hint="enter the name here"
+                            android:hint="enter the last name here"
                             android:translationZ="3dp"
                             app:hintEnabled="true">
 
@@ -172,7 +196,7 @@
 
                                 android:layout_height="wrap_content"
                                 android:elevation="2dp"
-                                android:text="arrow_ack"
+                                android:text="Submit"
                                 android:textColor="@color/white"
                                 android:translationZ="3dp"
                                 app:cornerRadius="10dp"
@@ -271,9 +295,9 @@
                         android:id="@+id/edit_phone_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_below="@id/imicon1"
-                        android:layout_marginVertical="5dp"
-                        android:visibility="gone">
+                        android:layout_marginVertical="5dp">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/edittext_phonee"
@@ -285,7 +309,7 @@
                             android:layout_marginEnd="30dp"
 
                             android:elevation="2dp"
-                            android:hint="enter the name here"
+                            android:hint="Enter the phone here"
                             android:translationZ="3dp"
                             app:hintEnabled="true">
 
@@ -295,7 +319,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
                                 android:elevation="2dp"
-                                android:inputType="textPersonName"
+                                android:inputType="phone"
                                 android:translationZ="3dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -326,7 +350,7 @@
 
                                 android:layout_height="wrap_content"
                                 android:elevation="2dp"
-                                android:text="arrow_ack"
+                                android:text="Submit"
                                 android:textColor="@color/white"
                                 android:translationZ="3dp"
                                 app:cornerRadius="10dp"
@@ -427,7 +451,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imicon0"
                         android:layout_marginVertical="5dp"
-                        android:visibility="gone">
+                        android:visibility="gone"
+
+                        >
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/old_pass"
@@ -489,7 +515,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginStart="30dp"
                             android:layout_marginEnd="30dp"
-
+                            android:layout_marginBottom="20dp"
                             android:elevation="2dp"
                             android:hint="repeat the pass"
                             android:translationZ="3dp"
@@ -534,7 +560,7 @@
 
                                 android:layout_height="wrap_content"
                                 android:elevation="2dp"
-                                android:text="arrow_ack"
+                                android:text="Submit"
                                 android:textColor="@color/white"
                                 android:translationZ="3dp"
                                 app:cornerRadius="10dp"
@@ -614,13 +640,13 @@
                             android:id="@+id/title_adr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" البريد الإلكتروني :"
+                            android:text=" العنوان :"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/emailTextView"
+                            android:id="@+id/adrTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/dark_grey"
@@ -631,40 +657,99 @@
                         android:id="@+id/edit_adr_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_below="@id/imicon4"
-                        android:layout_marginVertical="5dp"
-                        android:visibility="gone">
+                        android:layout_marginVertical="5dp">
 
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/verify_passa"
+                        <LinearLayout
+                            android:id="@+id/baba"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
+                            android:layout_margin="5dp"
+                            android:orientation="vertical">
 
-                            android:elevation="2dp"
-                            android:hint="repeat the pass"
-                            android:translationZ="3dp"
-                            app:hintEnabled="true">
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edittext_adr"
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MeublesSalsabil.TextInputLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
-                                android:elevation="2dp"
-                                android:inputType="textPersonName"
-                                android:translationZ="3dp" />
+                                android:layout_marginTop="10dp">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/adr1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp"
+                                    android:hint="العنوان الأول *"
+                                    android:textColor="@color/black" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MeublesSalsabil.TextInputLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/adr2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:layout_margin="4dp"
+                                    android:hint="العنوان الثاني "
+                                    android:textColor="@color/black" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MeublesSalsabil.TextInputLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/zipcode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp"
+                                    android:hint="الرقم البريدي  *"
+                                    android:inputType="number"
+                                    android:textColor="@color/black" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MeublesSalsabil.TextInputLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/baladia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp"
+                                    android:hint=" البلدية *"
+                                    android:textColor="@color/black" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Spinner
+                                android:id="@+id/wilaya_spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+
+                                />
+
+
+                        </LinearLayout>
 
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/verify_passa"
+                            android:layout_below="@+id/baba"
                             android:layout_centerHorizontal="true"
                             android:layout_marginVertical="8dp"
                             android:orientation="horizontal">
@@ -688,7 +773,7 @@
 
                                 android:layout_height="wrap_content"
                                 android:elevation="2dp"
-                                android:text="arrow_ack"
+                                android:text="Submit"
                                 android:textColor="@color/white"
                                 android:translationZ="3dp"
                                 app:cornerRadius="10dp"

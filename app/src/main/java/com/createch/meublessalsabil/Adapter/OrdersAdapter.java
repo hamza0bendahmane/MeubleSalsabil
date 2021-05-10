@@ -60,7 +60,7 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<Order, OrdersAdapter
                 Fragment fragment = new OrderDetails();
                 fragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().
-                        replace(R.id.nav_host_fragment, fragment)
+                        replace(R.id.nav_host_fragment, fragment).addToBackStack("app")
                         .commit();
             }
         });

@@ -1,11 +1,13 @@
 package com.createch.meublessalsabil.fragments;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import com.createch.meublessalsabil.models.Item;
 import com.createch.meublessalsabil.models.Promotion;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,6 +69,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        // ((BottomNavigationView)getActivity().findViewById(R.id.nav_view)).setSelectedItemId(R.id.navigation_home);
         getNotifications(getView());
         fetchBestOffres(getView());
         fetchPromotions(getView());
@@ -88,6 +92,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View root, @Nullable Bundle savedInstanceState) {
         TextView welcomeText = root.findViewById(R.id.welcome_text);
+        checkVeified(root);
         //        Notifications ...
 
         root.findViewById(R.id.notification_icon).setOnClickListener(new View.OnClickListener() {
@@ -101,7 +106,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 getParentFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.nav_host_fragment, new CallUsFragment())
+                        .replace(R.id.nav_host_fragment, new CallUsFragment()).addToBackStack("app")
                         .commit();
             }
         });
@@ -122,6 +127,42 @@ public class HomeFragment extends Fragment {
 
         /*TODO*/
         //search for product
+    }
+
+    private void checkVeified(View root) {
+        Button opengmail = root.findViewById(R.id.open_gmail);
+        TextView desc = root.findViewById(R.id.desc_text);
+        if (!user.isEmailVerified()) {
+
+            desc.setText(getString(R.string.verify_mail));
+            opengmail.setVisibility(View.VISIBLE);
+            opengmail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            PackageManager manager = getContext().getPackageManager();
+                            Intent i = manager.getLaunchIntentForPackage("com.google.android.gm");
+                            i.addCategory(Intent.CATEGORY_LAUNCHER);
+                            startActivity(i);
+                            FirebaseAuth.getInstance().signOut();
+                            getActivity().finish();
+
+                        }
+                    });
+                }
+            });
+
+
+        } else {
+            opengmail.setVisibility(View.GONE);
+            desc.setText(getString(R.string.welc_desc));
+
+        }
+
+
     }
 
 

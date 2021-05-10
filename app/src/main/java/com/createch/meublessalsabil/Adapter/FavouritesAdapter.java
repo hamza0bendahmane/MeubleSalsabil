@@ -97,7 +97,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<String, Favourite
                 Fragment fragment = new ProductShow();
                 fragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().
-                        replace(R.id.nav_host_fragment, fragment)
+                        replace(R.id.nav_host_fragment, fragment).addToBackStack("app")
                         .commit();
             }
         });

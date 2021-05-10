@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.createch.meublessalsabil.Activity.Notifications;
 import com.createch.meublessalsabil.Adapter.ShopListAdapter;
 import com.createch.meublessalsabil.R;
-import com.createch.meublessalsabil.models.Order;
 import com.createch.meublessalsabil.models.Soldable;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,10 +30,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 public class ShopListFragment extends Fragment {
     ShopListAdapter adapter;
@@ -74,37 +70,19 @@ public class ShopListFragment extends Fragment {
         confirmer_acht.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double tot = setTotal(root);
-                // push order .....
-                HashMap<String, Object> map = new HashMap<>();
-                HashMap<String, Long> date = new HashMap<>();
-
-                map.put("date", date.put(Order.WAITING, System.currentTimeMillis()));
-                map.put("userId", thisUser.getUid());
-                map.put("state", Order.WAITING);
-                map.put("totalPrice", tot);
-
-                DatabaseReference pushed = FirebaseDatabase.getInstance().getReference().child("PushedOrders").push();
-                ref.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                    @Override
-                    public void onSuccess(DataSnapshot dataSnapshot) {
-                        pushed.setValue(dataSnapshot.getValue()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                map.put("soldItems", pushed.toString());
-                                FirebaseFirestore.getInstance().collection("Orders").document(UUID.randomUUID().toString())
-                                        .set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        ref.removeValue();
-                                    }
-                                });
-
-                            }
-                        });
-                    }
-                });
-
+                if (adapter.getItemCount() != 0) {
+                    AppCompatActivity activity = (AppCompatActivity) getContext();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ref", String.valueOf(ref));
+                    bundle.putDouble("tot", setTotal(root));
+                    Fragment fragment = new ConfirmShopingList();
+                    fragment.setArguments(bundle);
+                    getParentFragmentManager().executePendingTransactions();
+                    getParentFragmentManager().beginTransaction().
+                            replace(R.id.nav_host_fragment, fragment).addToBackStack("app")
+                            .commit();
+                } else
+                    Snackbar.make(confirmer_acht, "Shouldnt be empty", Snackbar.LENGTH_SHORT).show();
 
             }
         });
@@ -143,14 +121,12 @@ public class ShopListFragment extends Fragment {
             TextView total = v.findViewById(R.id.total);
             if (adapter.getItemCount() != 0)
                 for (int i = 0; i < adapter.getItemCount(); i++) {
-                    adapter.notifyItemChanged(i);
+                    adapter.notifyDataSetChanged();
                     Soldable soldi = adapter.getItem(i);
-                    TextView vv = recyclerView.getChildAt(i).findViewById(R.id.price);
-                    Log.d("hbhb", "setTotal: price" + price);
+                    price = price + soldi.getPrice() * soldi.getQuantity();
 
-                    price = price + (Double.valueOf(vv.getText().toString()) * soldi.getQuantity());
+                    Log.d("hbhb", "setTotal: price" + price);
                     Log.d("hbhb", "quant: " + soldi.getQuantity());
-                    Log.d("hbhb", "quant: " + Double.valueOf(vv.getText().toString()));
 
                 }
             AnimateTextView(total, price);

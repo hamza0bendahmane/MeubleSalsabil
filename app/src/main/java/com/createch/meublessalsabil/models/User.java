@@ -1,35 +1,36 @@
 package com.createch.meublessalsabil.models;
 
 
+
 public class User {
     String email;
     String fname;
     String lname;
     String phone;
     String photo;
-    Adresse adr;
+    Adresse adresse;
     boolean blocked;
 
     public User() {
     }
 
-    public User(String email, String fname, String phone, String photo, Adresse adr, boolean blocked, String lname) {
+    public User(String fname, String lname, String email, String phone, Adresse adresse, String photo, boolean blocked) {
         this.email = email;
         this.fname = fname;
         this.phone = phone;
         this.photo = photo;
-        this.adr = adr;
+        this.adresse = adresse;
         this.lname = lname;
         this.blocked = blocked;
     }
 
 
-    public Adresse getAdr() {
-        return adr;
+    public Adresse getAdresse() {
+        return adresse;
     }
 
-    public void setAdr(Adresse adr) {
-        this.adr = adr;
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
 
     public boolean isBlocked() {

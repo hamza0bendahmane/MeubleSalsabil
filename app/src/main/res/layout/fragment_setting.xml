@@ -23,60 +23,54 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.115" />
 
-
-    <androidx.cardview.widget.CardView
+    <FrameLayout
+        android:layout_width="wrap_content"
         android:id="@+id/avatar"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="100dp"
-        app:cardBackgroundColor="@color/light_grey"
         android:elevation="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_settings"
+        android:clickable="true"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/avatar_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/light_grey"
-            />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:clickable="true"
-        android:elevation="0dp"
-        android:id="@+id/edit_avatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cardCornerRadius="60dp"
-        android:background="@color/light_grey"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
-        app:layout_constraintVertical_bias="0.17000002">
-
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/avatarr"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
             android:elevation="0dp"
+            app:cardBackgroundColor="@color/light_grey"
+            app:cardCornerRadius="100dp">
+
+            <ImageView
+                android:id="@+id/avatar_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/light_grey" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
             android:id="@+id/edit_avatar_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end|top"
+            android:layout_marginTop="14dp"
+            android:elevation="15dp"
             android:padding="0dp"
             app:srcCompat="@drawable/upload_pic" />
-    </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="160dp"
@@ -95,6 +89,7 @@
             style="@style/FontUltraBold"
             app:autoSizeTextType="uniform"
             android:layout_width="match_parent"
+            android:maxLength="20"
             android:layout_height="wrap_content"
             android:text="@string/full_name"
             android:textSize="14sp" />
@@ -104,6 +99,7 @@
             android:padding="5dp"
             style="@style/FontUltraBold"
             app:autoSizeTextType="uniform"
+            android:maxLength="20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email_display"
@@ -113,6 +109,7 @@
             android:id="@+id/phone"
             android:padding="5dp"
             app:autoSizeTextType="uniform"
+            android:maxLength="20"
             style="@style/FontNumbers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

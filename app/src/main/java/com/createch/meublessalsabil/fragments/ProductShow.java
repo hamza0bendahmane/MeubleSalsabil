@@ -44,7 +44,7 @@ public class ProductShow extends Fragment {
     TextView productName, discount, endate, productPrice, productHeight, productQuantity, productWidth, productMaterials, productCategory, productLength;
     ImageView productImage;
     RecyclerView productColors;
-
+    double finalPrice;
     public ProductShow() {
         // Required empty public constructor
     }
@@ -90,6 +90,7 @@ public class ProductShow extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 model = documentSnapshot.toObject(Item.class);
+                finalPrice = model.getPrice();
                 if (!prom_ref.isEmpty()) {
                     promotionView.setVisibility(View.VISIBLE);
                     FirebaseFirestore.getInstance().collection("Promotions")
@@ -98,7 +99,9 @@ public class ProductShow extends Fragment {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             prom_model = documentSnapshot.toObject(Promotion.class);
                             updatePromtionView(String.valueOf(prom_model.getDiscount()), prom_model.getEndDate());
-
+                            if (prom_model != null) {
+                                finalPrice = model.getPrice() - prom_model.getDiscount() * model.getPrice() / 100;
+                            }
                         }
                     });
                 }
@@ -143,11 +146,12 @@ public class ProductShow extends Fragment {
                 d.findViewById(R.id.submit_or).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Toast.makeText(getContext(), String.valueOf(finalPrice), Toast.LENGTH_SHORT).show();
                         if (ada.choosed_position == -1 || adap.choosed_position == -1)
                             Toast.makeText(getContext(), "اختر اولا ", Toast.LENGTH_SHORT).show();
                         else {
                             Soldable ss = new Soldable("", model.getColors().get(ada.choosed_position), 1, model.getMaterials().
-                                    get(adap.choosed_position));
+                                    get(adap.choosed_position), finalPrice);
                             FirebaseDatabase.getInstance().getReference().child("Temporary").child("ShopList").
                                     child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ref).setValue(ss).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

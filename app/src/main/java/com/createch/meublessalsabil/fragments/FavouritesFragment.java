@@ -47,7 +47,7 @@ public class FavouritesFragment extends Fragment {
             public void onClick(View v) {
                 getParentFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.nav_host_fragment, new CallUsFragment())
+                        .replace(R.id.nav_host_fragment, new CallUsFragment()).addToBackStack("app")
                         .commit();
             }
         });
@@ -71,6 +71,7 @@ public class FavouritesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        //  ((BottomNavigationView)getActivity().findViewById(R.id.nav_view)).setSelectedItemId(R.id.navigation_favourites);
         prodadapter.startListening();
     }
 

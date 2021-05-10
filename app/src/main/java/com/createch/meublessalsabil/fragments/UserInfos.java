@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.createch.meublessalsabil.R;
+import com.createch.meublessalsabil.models.Adresse;
+import com.createch.meublessalsabil.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -36,12 +39,13 @@ public class UserInfos extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference documentReference = db.collection("Users").document(user.getUid());
-    TextView fullName, emailTextView, phoneTextView;
+    public static String wilaya = "";
     RelativeLayout block_the_account;
-    MaterialCardView pass, name, phone, adr, workh;
-    MaterialButton submitname, submitadr, submitworkh, submitphone, submitpass;
-    MaterialButton cancelname, canceladr, cancelworkh, cancelphone, cancelpass;
-    TextInputEditText nameedit, adredit, passedit, vpassedit, ppassedit, workhedit, phoneedit;
+    TextView fullName, adrTextView, phoneTextView;
+    MaterialCardView pass, name, phone, adr;
+    MaterialButton submitname, submitadr, submitphone, submitpass;
+    MaterialButton cancelname, canceladr, cancelphone, cancelpass;
+    TextInputEditText lnameedit, fnameedit, adr1edit, zipcode, adr2edit, baladia, passedit, vpassedit, ppassedit, phoneedit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,20 +57,23 @@ public class UserInfos extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         fullName = view.findViewById(R.id.full_name);
-        emailTextView = view.findViewById(R.id.emailTextView);
+        adrTextView = view.findViewById(R.id.adrTextView);
         phoneTextView = view.findViewById(R.id.phoneTextView);
         block_the_account = view.findViewById(R.id.block_the_account);
         pass = view.findViewById(R.id.pass_card);
         name = view.findViewById(R.id.name_card);
         phone = view.findViewById(R.id.phone_card);
         adr = view.findViewById(R.id.adr_card);
-
         passedit = view.findViewById(R.id.edittext_pass);
         ppassedit = view.findViewById(R.id.edittext_opass);
         vpassedit = view.findViewById(R.id.edittext_vpass);
-        nameedit = view.findViewById(R.id.edittext_name);
+        fnameedit = view.findViewById(R.id.fedittext_name);
+        lnameedit = view.findViewById(R.id.edittext_name);
         phoneedit = view.findViewById(R.id.edittext_phone);
-        adredit = view.findViewById(R.id.edittext_adr);
+        zipcode = view.findViewById(R.id.zipcode);
+        adr1edit = view.findViewById(R.id.adr1);
+        adr2edit = view.findViewById(R.id.adr2);
+        baladia = view.findViewById(R.id.baladia);
 
         submitadr = view.findViewById(R.id.submit_adr);
         submitname = view.findViewById(R.id.submit_name);
@@ -83,16 +90,44 @@ public class UserInfos extends Fragment {
         submitadr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bala = baladia.getText().toString().trim();
+                String zip = zipcode.getText().toString().trim();
+                String adr2 = adr2edit.getText().toString().trim();
+                String adr1 = adr1edit.getText().toString().trim();
 
-                updateData(adredit, "adresse");
                 // canceladr.performClick();
+                if (bala.isEmpty()) {
+                    baladia.setError(getString(R.string.empty));
+                    return;
+                }
+                if (adr1.isEmpty()) {
+                    adr1edit.setError(getString(R.string.empty));
+                    return;
+                }
+                if (zip.isEmpty()) {
+                    zipcode.setError(getString(R.string.empty));
+                    return;
+                }
+                documentReference.update("adresse", new Adresse(adr1, adr2, Integer.parseInt(zip), bala, wilaya)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        baladia.setText("");
+                        adr1edit.setText("");
+                        adr2edit.setText("");
+                        zipcode.setText("");
+                        canceladr.performClick();
+                    }
+                });
+
             }
         });
 
         submitname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateData(nameedit, "name");
+                updateData(null, "fname", fnameedit);
+                updateData(cancelname, "lname", lnameedit);
+
                 //  cancelname.performClick();
 
             }
@@ -116,14 +151,8 @@ public class UserInfos extends Fragment {
                     vpassedit.setError(getString(R.string.shouldbe_same));
                 } else {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-// Get auth credentials from the user for re-authentication. The example below shows
-// email and password credentials but there are multiple possible providers,
-// such as GoogleAuthProvider or FacebookAuthProvider.
                     AuthCredential credential = EmailAuthProvider
                             .getCredential(user.getEmail(), op);
-
-// Prompt the user to re-provide their sign-in credentials
                     user.reauthenticate(credential)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -156,7 +185,7 @@ public class UserInfos extends Fragment {
         submitphone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateData(phoneedit, "phone");
+                updateData(cancelphone, "phone", phoneedit);
                 //     cancelphone.performClick();
 
             }
@@ -168,7 +197,7 @@ public class UserInfos extends Fragment {
         canceladr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.findViewById(R.id.emailTextView).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.adrTextView).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.edit_adr_layout).setVisibility(View.GONE);
                 view.findViewById(R.id.im4).setRotation(0);
 
@@ -198,7 +227,7 @@ public class UserInfos extends Fragment {
         cancelphone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.findViewById(R.id.phone).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.phoneTextView).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.edit_phone_layout).setVisibility(View.GONE);
                 view.findViewById(R.id.im2).setRotation(0);
 
@@ -248,12 +277,12 @@ public class UserInfos extends Fragment {
             @Override
             public void onClick(View v) {
                 if (view.findViewById(R.id.edit_phone_layout).getVisibility() == View.VISIBLE) {
-                    view.findViewById(R.id.phone).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.phoneTextView).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.edit_phone_layout).setVisibility(View.GONE);
                     view.findViewById(R.id.im2).setRotation(0);
 
                 } else {
-                    view.findViewById(R.id.phone).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.phoneTextView).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.edit_phone_layout).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.im2).setRotation(270);
 
@@ -265,12 +294,12 @@ public class UserInfos extends Fragment {
             @Override
             public void onClick(View v) {
                 if (view.findViewById(R.id.edit_adr_layout).getVisibility() == View.VISIBLE) {
-                    view.findViewById(R.id.emailTextView).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.adrTextView).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.edit_adr_layout).setVisibility(View.GONE);
                     view.findViewById(R.id.im4).setRotation(0);
 
                 } else {
-                    view.findViewById(R.id.emailTextView).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.adrTextView).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.edit_adr_layout).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.im4).setRotation(270);
 
@@ -323,13 +352,13 @@ public class UserInfos extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d("Firestore Doc", "DocumentSnapshot data: " + document.getData());
-
-                        String firstName = document.getString("fname");
-                        String lastName = document.getString("lname");
-                        String email = document.getString("email");
-                        String phone = document.getString("phone");
+                        User in = document.toObject(User.class);
+                        String firstName = in.getFname();
+                        String lastName = in.getLname();
+                        String adr = in.getAdresse().getBaladia();
+                        String phone = in.getPhone();
                         fullName.setText(getString(R.string.full_name, firstName, lastName));
-                        emailTextView.setText(getString(R.string.email_display, email));
+                        adrTextView.setText(getString(R.string.email_display, adr));
                         phoneTextView.setText(getString(R.string.phone_display, phone));
                     }
                 }
@@ -337,19 +366,31 @@ public class UserInfos extends Fragment {
         });
     }
 
-    private void updateData(TextInputEditText editText, String reference) {
-        String ss = editText.getText().toString().trim();
-        if (ss.isEmpty())
-            editText.setError(getString(R.string.empty));
+    private void updateData(final Button cancelbu, String reference, TextInputEditText... editTexts) {
+        String ss = "";
+        boolean k = true;
+        for (TextInputEditText editText : editTexts) {
+            ss = editText.getText().toString().trim();
+            if (ss.isEmpty()) {
+                editText.setError(getString(R.string.empty));
+                k = false;
+                break;
+            }
 
-        else
+        }
+
+        if (k)
             documentReference.update(reference, ss).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    editText.setText("");
+                    for (TextInputEditText editText : editTexts)
+                        editText.setText("");
+                    if (cancelbu != null)
+                        cancelbu.performClick();
                 }
+
             });
 
-
     }
+
 }

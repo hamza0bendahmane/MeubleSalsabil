@@ -6,10 +6,47 @@
     android:background="@color/greys">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:backgroundTint="@color/greys">
+
+        <RelativeLayout
+            android:id="@+id/wlcmm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/gold"
+            android:padding="4dp">
+
+
+            <TextView
+                android:id="@+id/wlcm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:text="تأكيد المشتريات"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="back"
+                android:src="@drawable/arrow_ack"
+                app:tint="@color/white" />
+
+        </RelativeLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/adrresse_infos"
@@ -18,7 +55,6 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
-            android:clickable="true"
             android:elevation="4dp"
             android:translationZ="8dp"
             app:cardCornerRadius="30dp"
@@ -77,6 +113,21 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MeublesSalsabil.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:hint=" رقم الهاتف * "
+                        android:inputType="phone"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MeublesSalsabil.TextInputLayout"
@@ -136,14 +187,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="vertical"
             android:visibility="gone"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wlcmm">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/arabic_card"
+                android:id="@+id/saved_infos_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/wlcm"
@@ -178,7 +229,7 @@
                         android:id="@+id/imagear"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:background="@drawable/check_on"
+                        android:src="@drawable/check_off"
 
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -199,7 +250,7 @@
                 />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/francais_card"
+                android:id="@+id/change_infos_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bb"
@@ -236,53 +287,16 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="end"
-                        android:background="@drawable/check_off"
+                        android:src="@drawable/check_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
 
         </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/wlcmm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@color/gold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:id="@+id/wlcm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:text="تأكيد المشتريات"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="back"
-                android:src="@drawable/arrow_ack"
-                app:tint="@color/white" />
-
-        </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirm"
@@ -290,32 +304,30 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginTop="10dp"
             android:backgroundTint="@color/gold"
             android:elevation="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="40dp"
             android:onClick="cancelOrder"
             android:text=" التالي "
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:translationZ="3dp"
-            app:cornerRadius="19px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/adrresse_infos" />
+            app:cornerRadius="19px" />
+
 
         <include
             android:id="@+id/thnks"
             layout="@layout/thanks_buying"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/wlcmm"
+            android:layout_height="match_parent"
             android:visibility="gone"
+            android:layout_below="@id/wlcmm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>

@@ -47,7 +47,7 @@ public class PromotionsAdapter extends FirestoreRecyclerAdapter<Promotion, Promo
                 Fragment fragment = new ProductShow();
                 fragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().
-                        replace(R.id.nav_host_fragment, fragment)
+                        replace(R.id.nav_host_fragment, fragment).addToBackStack("app")
                         .commit();
             }
         });

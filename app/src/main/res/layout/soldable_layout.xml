@@ -142,12 +142,25 @@
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/quanto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_alignParentEnd="true"
+                android:layout_marginVertical="10dp"
+                android:text="الكمية : "
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/price"
                 android:gravity="center"
-                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="5dp"
+                android:layout_toStartOf="@id/quanto"
                 android:layout_marginVertical="10dp"
                 android:orientation="horizontal">
 
@@ -155,54 +168,31 @@
                     android:id="@+id/plus"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="28dp"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:src="@drawable/plus_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/quanto"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    android:src="@drawable/plus_icon" />
 
                 <TextView
                     android:id="@+id/number_of_sold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginHorizontal="15dp"
                     android:text=""
                     android:textColor="@color/dark_grey"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/plus"
-                    app:layout_constraintStart_toEndOf="@+id/minus"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/minus"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="24dp"
                     android:adjustViewBounds="true"
                     android:clickable="true"
                     android:src="@drawable/__icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
 
-                <TextView
-                    android:id="@+id/quanto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="الكمية : "
-                    android:textColor="@color/dark_grey"
-                    android:textSize="16sp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 

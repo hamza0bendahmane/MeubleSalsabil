@@ -60,6 +60,7 @@ public class SettingFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View root, @Nullable Bundle savedInstanceState) {
+       // ((BottomNavigationView)getActivity().findViewById(R.id.nav_view)).setSelectedItemId(R.id.navigation_settings);
         fullName = root.findViewById(R.id.full_name);
         emailTextView = root.findViewById(R.id.email);
         phoneTextView = root.findViewById(R.id.phone);
@@ -151,7 +152,7 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 getParentFragmentManager()
                         .beginTransaction()
-                        .add(R.id.nav_host_fragment, new AboutApp())
+                        .add(R.id.nav_host_fragment, new AboutApp()).addToBackStack("app")
                         .commit();
             }
         });
@@ -221,7 +222,7 @@ public class SettingFragment extends Fragment {
         dialog.setButton(Dialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                documentReference.update("photo", String.valueOf(image_prof)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                documentReference.update("photo", UploadProfileimage(image_prof)).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Snackbar.make(prof_pic, "succ", Snackbar.LENGTH_SHORT).show();
@@ -237,6 +238,14 @@ public class SettingFragment extends Fragment {
             }
         });
         dialog.show();
+    }
+
+    private String UploadProfileimage(Uri image_prof) {
+        String imageurl = "";
+
+
+// TODO: upload photo & handle blocked homie
+        return imageurl;
     }
 
 }

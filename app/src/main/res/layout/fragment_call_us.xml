@@ -6,55 +6,51 @@
     android:background="@color/light_grey"
     android:orientation="vertical">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bg_const"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/backgroud_box"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
+            android:id="@+id/wlcmm"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/call_us"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_margin="14dp"
-                android:background="@null"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="back"
-                android:elevation="0dp"
-                android:saveEnabled="false"
-                android:scaleType="centerInside"
-                android:src="@drawable/back_arrow"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/gold">
 
 
             <TextView
-                android:id="@+id/welcome_text"
-                style="@style/FontUltraBold"
-                android:layout_width="match_parent"
+                android:id="@+id/wlcm"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
-                android:paddingHorizontal="25dp"
-                android:text="إتصل بنا ."
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="40sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="  إتصل بنا"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="back"
+                android:src="@drawable/arrow_ack"
+                app:tint="@color/white" />
 
+        </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -81,8 +77,8 @@
 
                 <ImageView
                     android:id="@+id/maps_int"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
                     android:src="@drawable/location_icon"
                     android:text="@string/voir_nos_produits"
@@ -123,8 +119,8 @@
 
                 <ImageView
                     android:id="@+id/email_int"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
                     android:src="@drawable/email_icon"
                     android:text="@string/voir_nos_produits"
@@ -153,8 +149,8 @@
 
                 <ImageView
                     android:id="@+id/phone_int"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
                     android:src="@drawable/phone_icon"
                     android:text="@string/voir_nos_produits"
@@ -181,8 +177,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
                     android:src="@drawable/business_hour"
                     android:text="@string/voir_nos_produits"

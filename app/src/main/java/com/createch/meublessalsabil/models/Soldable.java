@@ -5,17 +5,27 @@ public class Soldable {
 
     String description;
     String color;
+    double price;
     int quantity;
     String material;
 
-    public Soldable(String description, String color, int quantity, String material) {
+    public Soldable(String description, String color, int quantity, String material, double price) {
         this.description = description;
         this.color = color;
+        this.price = price;
         this.quantity = quantity;
         this.material = material;
     }
 
     public Soldable() {
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getDescription() {
