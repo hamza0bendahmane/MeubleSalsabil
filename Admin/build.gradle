@@ -45,8 +45,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:21.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'com.google.firebase:firebase-core:18.0.3'
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
-    implementation 'com.google.firebase:firebase-admin:7.1.1'
+    //implementation 'com.google.firebase:firebase-admin:7.1.1'
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
     implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -57,3 +58,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
 }
+
+apply plugin: 'com.google.gms.google-services'

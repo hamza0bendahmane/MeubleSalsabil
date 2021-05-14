@@ -3,7 +3,7 @@ package com.createch.adminmeublessalsabil.Model;
 
 import java.util.ArrayList;
 
-public class Model extends Soldable {
+public class Model  {
      ArrayList<Item> items ;
     String description;
      String name;

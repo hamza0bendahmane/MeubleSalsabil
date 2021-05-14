@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/container"
-    android:background="@color/transparent_"
-    android:backgroundTint="@color/transparent_"
+    android:background="@android:color/transparent"
+    android:backgroundTint="@android:color/transparent"
     android:layout_marginHorizontal="3dp"
     android:layout_marginVertical="5dp"
     android:orientation="horizontal">
@@ -20,7 +20,7 @@
         android:background="@drawable/rectangle_login"
         android:backgroundTint="@color/white"
         android:clickable="true"
-        android:elevation="4dp"
+        app:cardElevation="10dp"
         app:cardCornerRadius="9dp"
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -49,7 +49,7 @@
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@drawable/settings"
+                    android:src="@drawable/setting"
                     app:tint="@color/gold" />
 
                 <TextView

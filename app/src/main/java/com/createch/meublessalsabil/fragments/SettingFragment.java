@@ -2,17 +2,21 @@ package com.createch.meublessalsabil.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,22 +24,29 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.bumptech.glide.Glide;
 import com.createch.meublessalsabil.Activity.Application;
 import com.createch.meublessalsabil.Activity.Login;
 import com.createch.meublessalsabil.R;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 
 public class SettingFragment extends Fragment {
 
@@ -43,7 +54,7 @@ public class SettingFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference documentReference = db.collection("Users").document(user.getUid());
     ConstraintLayout logout_card, lang_card, infos_card;
-    ImageView imageView;
+    SimpleDraweeView imageView;
     MaterialButton about_app;
     TextView fullName, emailTextView, phoneTextView;
     Uri image_prof;
@@ -60,7 +71,7 @@ public class SettingFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View root, @Nullable Bundle savedInstanceState) {
-       // ((BottomNavigationView)getActivity().findViewById(R.id.nav_view)).setSelectedItemId(R.id.navigation_settings);
+        // ((BottomNavigationView)getActivity().findViewById(R.id.nav_view)).setSelectedItemId(R.id.navigation_settings);
         fullName = root.findViewById(R.id.full_name);
         emailTextView = root.findViewById(R.id.email);
         phoneTextView = root.findViewById(R.id.phone);
@@ -182,7 +193,7 @@ public class SettingFragment extends Fragment {
                         String email = document.getString("email");
                         String phone = document.getString("phone");
                         String imageUrl = document.getString("photo");
-                        Glide.with(getContext()).load(imageUrl).fitCenter().centerCrop().into(imageView);
+                        imageView.setImageURI(imageUrl);
                         if (firstName != null && lastName != null)
                             fullName.setText(getString(R.string.full_name, firstName, lastName));
                         if (email != null)
@@ -215,19 +226,13 @@ public class SettingFragment extends Fragment {
     }
 
     private void CheckAgain(ImageView prof_pic) {
-        Glide.with(getContext()).load(image_prof).fitCenter()
-                .centerCrop().into(prof_pic);
+        prof_pic.setImageURI(image_prof);
         AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
         dialog.setMessage("Do u want to save the image");
         dialog.setButton(Dialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                documentReference.update("photo", UploadProfileimage(image_prof)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Snackbar.make(prof_pic, "succ", Snackbar.LENGTH_SHORT).show();
-                    }
-                });
+                uploadPhotos(new ProgressDialog(getContext()));
             }
         });
         dialog.setButton(Dialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
@@ -240,12 +245,97 @@ public class SettingFragment extends Fragment {
         dialog.show();
     }
 
-    private String UploadProfileimage(Uri image_prof) {
-        String imageurl = "";
+
+    void uploadPhotos(ProgressDialog progressDialog0) {
+
+        progressDialog0.setMessage("Uploading .... ");
+        progressDialog0.show();
+
+        byte[] data = null;
+
+        // image compression
+        try {
+            Bitmap bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), image_prof); // getting image from gallery
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.PNG, 10, baos);
+            data = baos.toByteArray();
+        } catch (Exception e) {
+
+        }
+
+        final StorageReference childRef = FirebaseStorage.getInstance().getReference()
+                .child("Images/" + user.getUid());
+        final UploadTask uploadTask = childRef.putBytes(data);
+
+        // Progress dialog box implemented
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                int current_progress = (int) progress;
+                progressDialog0.setProgress(current_progress);
+            }
+        });
 
 
-// TODO: upload photo & handle blocked homie
-        return imageurl;
+        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if (task.isSuccessful()) {
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+
+                            // Continue with the task to get the download URL
+                            return childRef.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                Uri downloadUri = task.getResult();
+                                String mUri = downloadUri.toString();
+                                HashMap<String, Object> data = new HashMap<>();
+                                data.put("photo", mUri);
+
+                                FirebaseFirestore.getInstance().collection("Users").document(user.getUid())
+                                        .update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getContext(), R.string.succ, Toast.LENGTH_LONG).show();
+
+                                        } else {
+                                            String errMsg = task.getException().getMessage();
+                                            Toast.makeText(getContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                                        }
+                                        progressDialog0.dismiss();
+                                    }
+                                });
+                            } else {
+                                //Log.w("LOGIN", "signInWithCredential:failure", task.getException());
+                                progressDialog0.dismiss();
+                                String errMsg = task.getException().getMessage();
+                                Toast.makeText(getContext(), "خطأ رفع الملف " + errMsg, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+                } else {
+                    String errMsg = task.getException().getMessage();
+                    Toast.makeText(getContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "فشل الرفع " + e, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
-
 }

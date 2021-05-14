@@ -11,7 +11,7 @@
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/rectangle_login"
         android:clickable="true"
-        android:elevation="4dp"
+    app:cardElevation="10dp"
         android:translationZ="8dp"
         app:cardCornerRadius="9dp"
         app:layout_constraintEnd_toEndOf="parent"

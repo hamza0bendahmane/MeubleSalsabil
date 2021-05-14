@@ -22,12 +22,9 @@ import com.createch.adminmeublessalsabil.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
-
-import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -91,19 +88,29 @@ public class UsersAdapter extends FirestoreRecyclerAdapter<User, UsersAdapter.Us
         holder.itemView.findViewById(R.id.block_tool).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 new AlertDialog.Builder(context).setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // block user
-                        thisdocref.update("blocked", true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        thisdocref.update("blocked", !model.isBlocked()).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                FirebaseFirestore.getInstance().collection("BlockedUsers").document(thisdocref.getId()).set(new HashMap<String, Object>(), SetOptions.merge()).
+
+                                if (!model.isBlocked())
+                                    FirebaseDatabase.getInstance().getReference().child("BlockedUsers").child(thisdocref.getId()).setValue(true).
+                                            addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(holder.itemView.getContext(), R.string.successful, Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            });
+                                else
+                                FirebaseDatabase.getInstance().getReference().child("BlockedUsers").child(thisdocref.getId()).removeValue().
                                         addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(holder.itemView.getContext(), "blocked", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(holder.itemView.getContext(), R.string.successful, Toast.LENGTH_SHORT).show();
 
                                             }
                                         });

@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.Locale;
 
@@ -41,5 +42,6 @@ public class Application extends android.app.Application {
         super.onCreate();
         FacebookSdk.fullyInitialize();
         AppEventsLogger.activateApp(this);
+        Fresco.initialize(this);
     }
 }

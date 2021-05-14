@@ -69,11 +69,8 @@ public class PanelFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    int countac = 0;
+                    int countac = task.getResult().getDocuments().size();
 
-                    for (DocumentSnapshot document : task.getResult()) {
-                        countac++;
-                    }
                     users.setText(String.valueOf(countac));
 
                 } else {
@@ -85,11 +82,7 @@ public class PanelFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    int countac = 0;
-
-                    for (DocumentSnapshot document : task.getResult()) {
-                            countac++;
-                    }
+                    int countac = task.getResult().getDocuments().size();
                     products.setText(String.valueOf(countac));
 
                 } else {

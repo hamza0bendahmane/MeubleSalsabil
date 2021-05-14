@@ -42,7 +42,7 @@
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@drawable/settings"
+                    android:src="@drawable/setting"
                     app:tint="@color/gold" />
 
 

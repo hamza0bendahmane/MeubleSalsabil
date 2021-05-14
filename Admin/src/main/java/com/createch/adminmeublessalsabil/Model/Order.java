@@ -1,57 +1,83 @@
 package com.createch.adminmeublessalsabil.Model;
 
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Order {
 
-    long date;
-    int totalPrice;
+    public static String WAITING = "waiting";
+    public static String ONWAY = "onway";
+    public static String DELIVERED = "delivered";
+    HashMap<String, Timestamp> date;
+    double totalPrice;
+    double delivery;
     String userId;
+    Adresse adresse;
     ArrayList<String> comments;
     String state;
-    ArrayList<String> soldItems;
+    String soldItems;
 
-    public Order(long date, int totalPrice, ArrayList<String> comments, String state, ArrayList<String> soldItems, String userId) {
-        // this.date = date;
+    public Order(HashMap<String, Timestamp> date, double totalPrice, Adresse adresse, double delivery, ArrayList<String> comments, String state, String soldItems, String userId) {
+        this.date = date;
         this.totalPrice = totalPrice;
         this.comments = comments;
         this.state = state;
+        this.adresse = adresse;
         this.soldItems = soldItems;
         this.userId = userId;
-    }
-
-    public String getString() {
-        return userId;
-    }
-
-    public void setString(String userId) {
-        this.userId = userId;
-    }
-
-    public ArrayList<String> getSoldItems() {
-        return soldItems;
-    }
-
-    public void setSoldItems(ArrayList<String> soldItems) {
-        this.soldItems = soldItems;
+        this.delivery = delivery;
     }
 
     public Order() {
     }
 
-    public long getDate() {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getSoldItems() {
+        return soldItems;
+    }
+
+    public void setSoldItems(String soldItems) {
+        this.soldItems = soldItems;
+    }
+
+    public HashMap<String, Timestamp> getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setDate(HashMap<String, Timestamp> date) {
         this.date = date;
     }
 
-    public int getTotalPrice() {
+    public double getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(double delivery) {
+        this.delivery = delivery;
+    }
+
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

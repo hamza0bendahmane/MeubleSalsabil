@@ -12,4 +12,7 @@
     <string name="login_successful">تم الدخول بنجاح</string>
     <string name="please_wait">الرجاء الإنتظار</string>
     <string name="not_admin">الدخول للأدمين فقط</string>
+    <string name="parametres">Paramètres</string>
+    <string name="onway">تأكيد الطلب في الطريق</string>
+    <string name="delivered">تأكيد تم توصيل الطلب </string>
 </resources>

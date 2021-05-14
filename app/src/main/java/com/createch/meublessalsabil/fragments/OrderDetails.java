@@ -1,5 +1,8 @@
 package com.createch.meublessalsabil.fragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.createch.meublessalsabil.Activity.Application;
 import com.createch.meublessalsabil.Adapter.ShopListAdapter;
 import com.createch.meublessalsabil.R;
 import com.createch.meublessalsabil.models.Order;
@@ -27,8 +30,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.Timestamp;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,6 +43,7 @@ public class OrderDetails extends Fragment {
     ImageView delivered_image, accepted_image, onway_image;
     DatabaseReference refer;
     MaterialButton phone_moderator;
+    String admin_phone;
     CardView user_infos_card, infos;
     RecyclerView soldables;
     ShopListAdapter adapter;
@@ -45,7 +51,9 @@ public class OrderDetails extends Fragment {
     Button cancel_name, confirm_name;
     String ref;
     Order thisOrder;
+    DocumentReference docRef;
     String itemsRef, state;
+    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("AdminInfos/");
 
     public OrderDetails() {
         // Required empty public constructor
@@ -90,9 +98,19 @@ public class OrderDetails extends Fragment {
             } else if (state.equals(Order.DELIVERED)) {
                 OrderDeliveredUi();
             }
+            dbRef.child("phone").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                @Override
+                public void onSuccess(DataSnapshot dataSnapshot) {
+                    admin_phone = dataSnapshot.getValue().toString();
+                }
+            });
+
             refer = FirebaseDatabase.getInstance().getReferenceFromUrl(itemsRef);
-            FirebaseFirestore.getInstance().collection("Orders")
-                    .document(ref).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            docRef = FirebaseFirestore.getInstance().collection("Orders")
+                    .document(ref);
+
+
+                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     thisOrder = documentSnapshot.toObject(Order.class);
@@ -117,11 +135,40 @@ public class OrderDetails extends Fragment {
             getActivity().onBackPressed();
 
         fetchShopList();
-        //  getStatus of ordr then update ...
-// delivered , on way , accepted ,waiting ...
-        // update image and date
-        // and updateUI onway or delivered ...
+        cancel_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
+                dialog.setMessage("Are u sure want delete your order ?");
+                dialog.setButton(Dialog.BUTTON_POSITIVE, "Yes , Iam sure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        refer.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(getContext(),R.string.succ,Toast.LENGTH_SHORT).show();
+                                        getActivity().onBackPressed();
 
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+                });
+                dialog.setButton(Dialog.BUTTON_NEGATIVE, "cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
 
     }
 
@@ -132,7 +179,7 @@ public class OrderDetails extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + Application.ADMINE_PHONE));
+                intent.setData(Uri.parse("tel:" + admin_phone));
                 startActivity(intent);
             }
         });

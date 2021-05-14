@@ -90,7 +90,7 @@ public class AcceptedOrders extends Fragment {
         private void setUpRecyclerView() {
             ref = FirebaseFirestore.getInstance().collection("Orders");
 
-            Query query = ref.whereEqualTo("state","accepted");
+            Query query = ref.whereEqualTo("state","onway");
             options = new FirestoreRecyclerOptions.Builder<Order>()
                     .setQuery(query, Order.class)
                     .build();

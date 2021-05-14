@@ -65,7 +65,16 @@ public class OrdersFragment extends Fragment{
                         .commit();
             }
         });
+        view.findViewById(R.id.gotodelivered).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment ff = new DeliveredFragment();
 
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, ff)
+                        .commit();
+            }
+        });
     }
 
     private void SearchFor(String field) {

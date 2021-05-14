@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
         android:clickable="true"
         android:focusable="true"
@@ -36,12 +36,26 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:theme="@style/Widget.MaterialComponents.Button.TextButton" />
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gotodelivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@id/gotoaccepted"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="الطلبات الموصولة "
+        android:textColor="@color/bluesp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:theme="@style/Widget.MaterialComponents.Button.TextButton" />
     <LinearLayout
         android:id="@+id/search_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/wlcm"
+        android:layout_below="@id/gotodelivered"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="15dp">
 

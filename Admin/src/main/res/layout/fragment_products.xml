@@ -51,7 +51,7 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:elevation="4dp"
+            app:cardElevation="10dp"
             android:translationZ="8dp"
             app:cardCornerRadius="9dp"
 

@@ -105,7 +105,7 @@ public class ShopListAdapter extends FirebaseRecyclerAdapter<Soldable, ShopListA
                         public void onSuccess(Void aVoid) {
                             Snackbar.make(v, "تم  ", Snackbar.LENGTH_SHORT).show();
                             holder.itemView.findViewById(R.id.minus).setEnabled(true);
-// make the shoplist item id sameas product id to avoid redu^lic    ate
+// make the products.png item id sameas product id to avoid redu^lic    ate
 
                         }
                     });
@@ -124,7 +124,7 @@ public class ShopListAdapter extends FirebaseRecyclerAdapter<Soldable, ShopListA
                         Snackbar.make(v, "تم  ", Snackbar.LENGTH_SHORT).show();
                         holder.itemView.findViewById(R.id.plus).setEnabled(true);
 
-// make the shoplist item id sameas product id to avoid redu^lic    ate
+// make the products.png item id sameas product id to avoid redu^lic    ate
 
                     }
                 });

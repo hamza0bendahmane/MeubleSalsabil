@@ -34,6 +34,16 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         setUpRecyclerView();
         SearchView ss = view.findViewById(R.id.simpleSearchView);
+        view.findViewById(R.id.gotoaccepted).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment ff = new BlockedUsersFragment();
+
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, ff)
+                        .commit();
+            }
+        });
         ss.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

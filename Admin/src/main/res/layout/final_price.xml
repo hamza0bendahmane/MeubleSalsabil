@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/infos"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="15dp"
+    android:elevation="8dp"
+    android:padding="4dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="14dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+
+
+        <TextView
+            android:id="@+id/prix_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:text="مبلغ الطلبية :"
+            android:textColor="@color/dark_grey"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/prix_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:padding="2dp"
+            android:text=""
+            android:textColor="@color/gold"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/prix_deliv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prix_order"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:text="رسوم التركيب والتوصيل :"
+            android:textColor="@color/dark_grey"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/prix_delivery"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prix_orders"
+            android:layout_alignParentStart="true"
+            android:inputType="numberDecimal"
+            android:padding="2dp"
+            android:text=""
+            android:textColor="@color/gold"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/prixt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prix_deliv"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:text="المبلغ الإجمالي  :"
+            android:textColor="@color/dark_grey"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pritotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prix_delivery"
+            android:layout_alignParentStart="true"
+            android:padding="2dp"
+            android:text=""
+            android:textColor="@color/gold"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+
+        <ImageView
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/prixt"
+            android:layout_marginVertical="10dp"
+            android:background="@color/black" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:layout_below="@id/bar"
+            app:cornerRadius="19dp"
+            android:text="موافق "
+            app:backgroundTint="#11ff11"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:backgroundTint="#ff1232"
+            app:cornerRadius="19dp"
+            android:layout_below="@id/bar"
+            android:text=" إلغاء "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

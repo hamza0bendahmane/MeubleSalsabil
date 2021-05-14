@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mswipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greys">
+
+
+    <TextView
+        android:id="@+id/wlcm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="40dp"
+        android:text="الطلبات الموصولة"
+        android:textColor="@color/gold"
+        android:textSize="38sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gotoorders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="الطلبات  "
+        android:textColor="@color/bluesp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:theme="@style/Widget.MaterialComponents.Button.TextButton" />
+
+    <LinearLayout
+        android:id="@+id/search_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wlcm"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="15dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wlcm"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:translationZ="8dp"
+            app:cardCornerRadius="9dp"
+
+            >
+
+            <SearchView
+                android:id="@+id/simpleSearchView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search here" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orders_recy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_card"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:elevation="8dp"
+        android:minHeight="300dp"
+        android:orientation="vertical" />
+
+</RelativeLayout>
+

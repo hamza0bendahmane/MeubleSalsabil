@@ -1,13 +1,10 @@
 package com.createch.adminmeublessalsabil.Activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,8 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Locale;
 
 public class Login extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     boolean ff = false;
@@ -53,25 +48,7 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
 
     }
 
-    private void changeLang(String lang) {
-        Locale myLocale = new Locale(lang);
-        Resources res = getBaseContext().getResources();
-        DisplayMetrics display = res.getDisplayMetrics();
-        Configuration configuration = res.getConfiguration();
-        configuration.locale = myLocale;
-        res.updateConfiguration(configuration, display);
-        Toast.makeText(this, getResources().getString(R.string.language_updated), Toast.LENGTH_SHORT).show();
-        Intent refresh = new Intent(getApplicationContext(), Login.class);
-        startActivity(refresh);
-        finish();
-    }
 
-    private String getLang() {
-        String language = getResources().getConfiguration().locale.getLanguage();
-        Log.d("hbhb", language);
-
-        return language;
-    }
 
     public void enterToPanel(View vv) {
         TextInputEditText SignUpMail = findViewById(R.id.email_edit_text);
@@ -134,13 +111,13 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         if (position == 0) {
-            if (getLang() == "ar") {
-                changeLang("fr");
+            if (Application.getCurrentLang(this).equals("ar")) {
+                Application.changeLang("fr", this,true);
             }
 
         } else {
-            if (!(getLang() == "ar")) {
-                changeLang("ar");
+            if (!(Application.getCurrentLang(this).equals("ar"))) {
+                Application.changeLang("ar",(Activity) this,true);
 
             }
 

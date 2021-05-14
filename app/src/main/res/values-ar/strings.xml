@@ -45,4 +45,7 @@
     <string name="currency">دج</string>
     <string name="merci">شكرا</string>
     <string name="about_theapp">حول التطبيق</string>
+    <string name="succ">نجاح</string>
+    <string name="reactivate_account">إعادة تفعيل الحساب</string>
+    <string name="send_objection">إعتراض على القرار</string>
 </resources>

@@ -45,9 +45,8 @@
         android:background="@drawable/rectangle_login"
         android:backgroundTint="@color/gold"
         android:clickable="true"
-        android:elevation="4dp"
+        app:cardElevation="10dp"
         android:onClick="gotousers"
-        android:translationZ="8dp"
         app:cardCornerRadius="9dp"
         app:layout_constraintBottom_toTopOf="@+id/products_card"
         app:layout_constraintEnd_toStartOf="@+id/guid"
@@ -64,7 +63,8 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/into"
+                android:src="@drawable/arrow_ack"
+                android:layout_marginTop="8dp"
                 app:tint="@color/white"
 
                 />
@@ -105,9 +105,8 @@
         android:layout_marginTop="80dp"
         android:background="@drawable/shadow"
         android:clickable="true"
-        android:elevation="4dp"
+        app:cardElevation="10dp"
         android:onClick="gotoproducts"
-        android:translationZ="8dp"
         app:cardCornerRadius="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guid"
@@ -125,7 +124,8 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/into"
+                android:src="@drawable/arrow_ack"
+                android:layout_marginTop="8dp"
                 app:tint="@color/gold"
 
                 />
@@ -172,9 +172,8 @@
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/shadow"
         android:clickable="true"
-        android:elevation="4dp"
+        app:cardElevation="10dp"
         android:onClick="gotoaorders"
-        android:translationZ="8dp"
         app:cardCornerRadius="9dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guid"
@@ -193,7 +192,8 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/into"
+                android:src="@drawable/arrow_ack"
+                android:layout_marginTop="8dp"
                 app:tint="@color/gold"
 
                 />
@@ -232,9 +232,8 @@
         android:background="@drawable/shadow"
         android:backgroundTint="@color/gold"
         android:clickable="true"
-        android:elevation="4dp"
+        app:cardElevation="10dp"
         android:onClick="gotoorders"
-        android:translationZ="8dp"
         app:cardCornerRadius="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -252,7 +251,8 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/into"
+                android:src="@drawable/arrow_ack"
+                android:layout_marginTop="8dp"
                 app:tint="@color/white"
 
                 />

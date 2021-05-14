@@ -3,15 +3,15 @@
     package="com.createch.adminmeublessalsabil">
 
     <application
+        android:name=".Activity.Application"
         android:allowBackup="true"
-        android:icon="@drawable/splash_image"
+        android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/splash_image"
+        android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeublesSalsabil">
 
 
-        <activity android:name=".Activity.OrderDetails" />
         <activity android:name=".Activity.EditCollection" />
         <activity android:name=".Activity.AddCollection" />
         <activity android:name=".Activity.EditProduct" />
@@ -20,7 +20,8 @@
             android:name=".Activity.AdminPanelActivity"
             android:label="@string/title_activity_admin_panel" />
         <activity android:name=".Activity.Login" />
-        <activity android:name=".Activity.Splash">
+        <activity android:name=".Activity.Splash"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

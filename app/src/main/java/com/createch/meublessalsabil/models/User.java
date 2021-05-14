@@ -6,6 +6,7 @@ public class User {
     String email;
     String fname;
     String lname;
+    String uid ;
     String phone;
     String photo;
     Adresse adresse;
@@ -14,13 +15,14 @@ public class User {
     public User() {
     }
 
-    public User(String fname, String lname, String email, String phone, Adresse adresse, String photo, boolean blocked) {
+    public User(String fname, String lname, String email, String phone, Adresse adresse, String photo, String uid ,boolean blocked) {
         this.email = email;
         this.fname = fname;
         this.phone = phone;
         this.photo = photo;
         this.adresse = adresse;
         this.lname = lname;
+        this.uid =uid;
         this.blocked = blocked;
     }
 
@@ -81,4 +83,11 @@ public class User {
         this.lname = lname;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 }

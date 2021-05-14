@@ -37,6 +37,10 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
@@ -53,9 +57,9 @@ public class Register extends AppCompatActivity {
     Activity activity;
     AccessTokenTracker accessTokenTracker;
     AccessToken accessToken;
+    Intent go_login;
+    boolean blockedByAdmin ;
 
-    /*TDDO*/
-    //save changed lang
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,10 +209,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        if(fAuth.getCurrentUser()!=null) {
-            startActivity(new Intent(getApplicationContext(), Home.class));
-            finish();
-        }
 
     }
 
@@ -224,8 +224,7 @@ public class Register extends AppCompatActivity {
                     if (isNewUser) {
                         RegisterNewUser(task.getResult().getUser());
                     } else {
-                        startActivity(new Intent(getApplicationContext(), Home.class));
-                        finish();
+                    go(task.getResult().getUser());
                     }
                 } else {
                     // If sign in fails, display a message to the user.
@@ -241,7 +240,7 @@ public class Register extends AppCompatActivity {
 
     private void RegisterNewUser(FirebaseUser user) {
         User userdata = new User(user.getDisplayName().split(" ")[0], user.getDisplayName().split(" ")[1], user.getEmail(),
-                user.getPhoneNumber(), new Adresse(), user.getPhotoUrl() + "/picture?height=500", false);
+                user.getPhoneNumber(), new Adresse(), user.getPhotoUrl() + "/picture?height=500",user.getUid(), false);
         FirebaseFirestore.getInstance().collection("Users")
                 .document(user.getUid()).set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -268,6 +267,43 @@ public class Register extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         accessTokenTracker.stopTracking();
+
+    }
+    void go(FirebaseUser user){
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("BlockedUsers").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                boolean isblock = true ;
+                if (!snapshot.exists())
+                    isblock = false;
+                else {
+                    isblock = true;
+                    blockedByAdmin = snapshot.getValue(Boolean.class);
+                }
+
+                if (isblock) {
+                    go_login = new Intent(Register.this, BlockedUserActivity.class);
+                    go_login.putExtra("byadmin",blockedByAdmin);
+                    go_login.putExtra("uid",user.getUid());
+
+                }
+                else
+                    go_login = new Intent(Register.this, Home.class);
+
+
+                startActivity(go_login);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
     }
 }

@@ -31,6 +31,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -333,15 +334,15 @@ public class UserInfos extends Fragment {
     }
 
     private void DeactivateHim() {
-    /*    UserRecord.UpdateRequest request = new UserRecord.UpdateRequest(user.getUid())
-                .setDisabled(true);
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getContext(),Login.class));
-        try {
-            FirebaseAuth.getInstance().updateUser(request);
-        } catch (FirebaseAuthException e) {
-            e.printStackTrace();
-        }*/
+        FirebaseDatabase.getInstance().getReference().child("BlockedUsers").
+                child(user.getUid()).setValue(false).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getContext(),R.string.succ,Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
+            }
+        });
     }
 
     private void fetchInfos() {

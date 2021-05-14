@@ -15,23 +15,48 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.createch.meublessalsabil.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
 
 public class CallUsFragment extends Fragment {
 
-    String email_frombdd, phone_frombdd;
+    String email_frombdd = "hb@gmail.com";
+        String phone_frombdd = "0556765919";
+        String adresse ;
+    String workh ;
+    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("AdminInfos/");
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                email_frombdd = snapshot.child("email").getValue().toString();
+                phone_frombdd = snapshot.child("phone").getValue().toString();
+                workh = snapshot.child("start_wh").getValue().toString();
+                adresse = snapshot.child("adresse").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         return inflater.inflate(R.layout.fragment_call_us, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        TextView  work;
+        work = view.findViewById(R.id.work);
         ImageView maps = view.findViewById(R.id.maps_int);
         TextView maps0 = view.findViewById(R.id.maps_int0);
         Button maps1 = view.findViewById(R.id.maps_int1);
@@ -42,6 +67,10 @@ public class CallUsFragment extends Fragment {
         ImageView email = view.findViewById(R.id.email_int);
         TextView email1 = view.findViewById(R.id.email_int1);
 
+        work.setText(workh);
+        phone1.setText(phone_frombdd);
+        email1.setText(email_frombdd);
+        maps0.setText(adresse);
 
         phone1.setOnClickListener(new View.OnClickListener() {
             @Override

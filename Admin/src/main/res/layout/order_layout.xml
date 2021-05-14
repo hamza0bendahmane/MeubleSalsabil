@@ -24,9 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
             android:layout_marginStart="10dp"
-            android:padding="3dp"
+            app:cardElevation="10dp"
             android:paddingHorizontal="5dp"
             android:text="تفاصيل الطلب"
             android:textColor="@color/white"
@@ -36,33 +35,55 @@
 
         <!--Textview for displaying our Course Duration-->
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_toStartOf="@id/photo"
-            android:text="حمزة بن دحمان"
+            android:maxLength="10"
+            android:layout_marginStart="25dp"
+            android:layout_alignParentStart="true"
+            android:text="22/05/2021"
+            android:layout_below="@id/order_details"
             android:padding="2dp"
             android:textSize="18sp"
             android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/photo"
+            android:layout_height="wrap_content">
 
-        <!--Textview for displaying our Course Description-->
-        <TextView
-            android:id="@+id/phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/name"
-            android:layout_marginEnd="8dp"
-            android:layout_toStartOf="@id/photo"
-            android:text="055455285"
-            android:textSize="18sp"
-            android:padding="2dp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="حمزة بن دحمان"
+                android:padding="2dp"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+
+            <!--Textview for displaying our Course Description-->
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:layout_marginEnd="8dp"
+                android:text="055455285"
+                android:textSize="18sp"
+                android:padding="2dp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/photo"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
             android:src="@color/gold"
