@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.createch.meublessalsabil.Adapter.WilayaAdapter;
 import com.createch.meublessalsabil.R;
 import com.createch.meublessalsabil.models.Adresse;
 import com.createch.meublessalsabil.models.User;
@@ -42,6 +45,7 @@ public class UserInfos extends Fragment {
     DocumentReference documentReference = db.collection("Users").document(user.getUid());
     public static String wilaya = "";
     RelativeLayout block_the_account;
+    Spinner wilaya_spinner;
     TextView fullName, adrTextView, phoneTextView;
     MaterialCardView pass, name, phone, adr;
     MaterialButton submitname, submitadr, submitphone, submitpass;
@@ -64,6 +68,7 @@ public class UserInfos extends Fragment {
         pass = view.findViewById(R.id.pass_card);
         name = view.findViewById(R.id.name_card);
         phone = view.findViewById(R.id.phone_card);
+        wilaya_spinner = view.findViewById(R.id.wilaya_spinner);
         adr = view.findViewById(R.id.adr_card);
         passedit = view.findViewById(R.id.edittext_pass);
         ppassedit = view.findViewById(R.id.edittext_opass);
@@ -86,6 +91,24 @@ public class UserInfos extends Fragment {
         cancelpass = view.findViewById(R.id.cancel_pass);
         cancelphone = view.findViewById(R.id.cancel_phone);
         fetchInfos();
+        WilayaAdapter adapter = new WilayaAdapter(getContext(), getResources().getStringArray(R.array.wilayas));
+        wilaya_spinner.setAdapter(adapter);
+        wilaya_spinner.setSelection(15);
+
+
+        wilaya_spinner.setPrompt(" Wilayas");
+        wilaya_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                wilaya = adapter.getItem(position);
+                Log.d("hbhb", "onItemSelected: " + adapter.getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                wilaya = adapter.getItem(15);
+            }
+        });
 
 
         submitadr.setOnClickListener(new View.OnClickListener() {

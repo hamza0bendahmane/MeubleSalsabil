@@ -43,6 +43,9 @@ public class ProductsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+        if (!bottom_navigation.isShown())
+            bottom_navigation.setVisibility(View.VISIBLE);
         setUpRecyclerView();
         SearchView ss = view.findViewById(R.id.simpleSearchView);
         ss.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -68,6 +71,10 @@ public class ProductsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // go to add product .....
+               /* Animator.create(getContext())
+                        .on(view.findViewById(R.id.addproduct))
+                        .setStartVisibility(View.VISIBLE)
+                        .animate(android.R.anim.fade_out);*/
                 Intent intent = new Intent(getContext(), AddProduct.class);
                 startActivity(intent);
             }

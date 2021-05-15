@@ -33,6 +33,9 @@ public class OrdersFragment extends Fragment{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+        if (!bottom_navigation.isShown())
+            bottom_navigation.setVisibility(View.VISIBLE);
         setUpRecyclerView();
         SearchView ss = view.findViewById(R.id.simpleSearchView);
         ss.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

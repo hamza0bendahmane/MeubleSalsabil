@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/infos"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="15dp"
+    android:backgroundTint="@color/greys"
+    android:elevation="8dp"
+    android:padding="4dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="14dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/colors_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:textColor="@color/dark_grey"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/colors_recycler"
+            android:layout_marginVertical="10dp"
+            android:background="@color/black" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:text="موافق "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="#11ff11"
+            app:cornerRadius="19dp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bar"
+            android:padding="2dp"
+            android:text=" إلغاء "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="#ff1232"
+            app:cornerRadius="19dp" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

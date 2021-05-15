@@ -2,6 +2,7 @@ package com.createch.meublessalsabil.fragments;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,10 +94,12 @@ public class ConfirmShopingList extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 user_wilaya = adapter.getItem(position);
+                Log.d("hbhb", "onItemSelected: " + adapter.getItem(position));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                user_wilaya = adapter.getItem(15);
             }
         });
 

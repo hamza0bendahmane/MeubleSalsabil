@@ -15,11 +15,13 @@ import java.util.List;
 
 public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolder> {
     List<String> colors;
-    String tag ;
+    String tag;
+    String color;
 
-    public ColorsAdapter(List<String> colors , String tag) {
+    public ColorsAdapter(List<String> colors, String tag, String color) {
         this.colors = colors;
         this.tag = tag;
+        this.color = color;
     }
 
 
@@ -35,7 +37,21 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolde
     public void onBindViewHolder(@NonNull ColorHolder holder, int position) {
         holder.image.setCardBackgroundColor(Color.parseColor(colors.get(position)));
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                color = colors.get(position);
+            }
+        });
+        if (tag.equals("remove"))
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    removeAt(position);
 
+                    return false;
+                }
+            });
     }
 
 
@@ -44,30 +60,26 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorsAdapter.ColorHolde
         return colors.size();
     }
 
-
-    class ColorHolder extends RecyclerView.ViewHolder  {
-        MaterialCardView image;
-
-        public ColorHolder(@NonNull View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.color_c);
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if(tag.equals("remove")){
-                        removeAt(getAdapterPosition());
-                    }
-                    return false;
-                }
-            });
-        }
-
-
-
+    public String getColor() {
+        return color;
+    }
 
     public void removeAt(int position) {
         colors.remove(position);
         notifyDataSetChanged();
     }
+
+    class ColorHolder extends RecyclerView.ViewHolder {
+        MaterialCardView image;
+
+        public ColorHolder(@NonNull View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.color_c);
+
+        }
+
+
+
+
     }
 }

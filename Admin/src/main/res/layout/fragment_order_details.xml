@@ -38,51 +38,35 @@
             app:tint="@color/dark_grey" />
 
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/user_infos_card0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/wlcm"
-        android:layout_margin="5dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="15dp"
-        android:elevation="8dp"
-        android:padding="4dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
-
-        <RelativeLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/user_infos_card0"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wlcm"
             android:layout_margin="5dp"
-            android:orientation="horizontal"
-            android:padding="2dp">
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:elevation="8dp"
+            android:padding="4dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
 
-            <ImageView
-                android:id="@+id/im3"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:src="@android:drawable/ic_dialog_info"
-                app:tint="@color/gold"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:padding="2dp">
 
-                />
+                <ImageView
+                    android:id="@+id/im3"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@android:drawable/ic_dialog_info"
+                    app:tint="@color/gold"
 
-            <TextView
-                android:id="@+id/text_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="9dp"
-                android:layout_toStartOf="@id/imicon"
-                android:layout_toEndOf="@id/im3"
-                android:text="hghgh@emem.com"
-                android:textColor="@color/gold"
-                android:textSize="18sp"
-                android:textStyle="bold"
-
-                />
-
+                    />
 
 
                 <TextView
@@ -91,8 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_toStartOf="@id/image_product"
-                    android:text="الإسم :"
-
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -103,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/name_product"
                     android:layout_toStartOf="@id/image_product"
-                    android:text="0556765919"
+                    android:text=""
                     android:textColor="@color/dark_grey"
                     android:textSize="18sp" />
 
@@ -113,80 +96,94 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/materials"
                     android:layout_toStartOf="@id/image_product"
-                    android:text="hg;ghd, hgf$d, 1542"
+                    android:text=""
                     android:textColor="@color/dark_grey"
                     android:textSize="18sp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_product"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginHorizontal="9dp"
-                android:src="@color/french_beige"
-                app:civ_border_color="@color/dark_grey"
-                app:civ_border_width="2dp"
-
-                />
-
-            <RelativeLayout
-                android:id="@+id/edit_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/adresses"
-                android:layout_marginVertical="5dp"
-                android:visibility="gone">
-
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/text_email"
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/adresses"
+                    android:layout_marginHorizontal="9dp"
+                    android:layout_marginStart="7dp"
+                    android:layout_toStartOf="@id/image_product"
+                    android:maxLength="24"
+                    android:text=""
+                    android:textColor="@color/gold"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_product"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="9dp"
+                    android:src="@color/french_beige"
+                    app:civ_border_color="@color/dark_grey"
+                    app:civ_border_width="2dp"
+
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/edit_user"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/mail_tool"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/email" />
-
-                    <ImageView
-                        android:id="@+id/phone_tool"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginHorizontal="40dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/phone"
-
-                        />
-
-                    <ImageView
-                        android:id="@+id/block_tool"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginHorizontal="5dp"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:src="@drawable/block"
-                        android:textColor="@color/white"
-                        android:translationZ="3dp"
-                        app:cornerRadius="10dp"
-
-                        />
-                </LinearLayout>
+                    android:layout_below="@id/adresses"
+                    android:layout_marginVertical="5dp"
+                    android:visibility="gone">
 
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/mail_tool"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:src="@drawable/email" />
+
+                        <ImageView
+                            android:id="@+id/phone_tool"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginHorizontal="40dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:src="@drawable/phone"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/block_tool"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:clickable="true"
+                            android:elevation="2dp"
+                            android:focusable="true"
+                            android:src="@drawable/block"
+                            android:textColor="@color/white"
+                            android:translationZ="3dp"
+                            app:cornerRadius="10dp"
+
+                            />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
         <androidx.cardview.widget.CardView
@@ -225,14 +222,17 @@
                     android:textSize="18sp" />
 
                 <!--Textview for displaying our Course Description-->
+
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/order_number"
-android:layout_alignParentEnd="true"                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginEnd="14dp"
                     android:padding="2dp"
-                    android:text="055455285"
+                    android:text="85000"
                     android:textColor="@color/dark_grey"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -240,21 +240,22 @@ android:layout_alignParentEnd="true"                    android:layout_marginEnd
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_height="wrap_content"
-android:layout_alignParentStart="true"
-                    android:text=" 22/02/1458 "
+                    android:maxLength="10"
                     android:textColor="@color/dark_grey"
                     android:textSize="18sp" />
 
                 <!--Textview for displaying our Course Description-->
-                <TextView
-                    android:id="@+id/time"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/phone_moderator"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/date"
                     android:layout_alignParentStart="true"
                     android:text="055455285"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/facebook_blue"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -305,7 +306,7 @@ android:layout_alignParentStart="true"
                 android:layout_weight="1"
                 android:elevation="2dp"
                 android:onClick="submitOrder"
-                android:text=" تأكيد الطلب"
+                android:text="@string/delivered"
                 android:textColor="@color/white"
                 android:translationZ="3dp"
                 app:cornerRadius="10dp"

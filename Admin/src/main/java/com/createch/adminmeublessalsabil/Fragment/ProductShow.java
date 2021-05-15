@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.createch.adminmeublessalsabil.Model.Item;
 import com.createch.adminmeublessalsabil.Model.Promotion;
 import com.createch.adminmeublessalsabil.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,6 +38,7 @@ import java.util.List;
 public class ProductShow extends Fragment {
     String ref, prom_ref;
     Item model;
+    ScrollView scrollView;
     Promotion prom_model;
     MaterialButton edit_product, delete_product;
     TextView productName, discount, endate, productPrice, productHeight, productQuantity, productWidth, productMaterials, productCategory, productLength;
@@ -64,6 +67,7 @@ public class ProductShow extends Fragment {
         View promotionView = itemView.findViewById(R.id.promotion_layout);
         productImage = itemView.findViewById(R.id.image_product);
         productColors = itemView.findViewById(R.id.colors);
+        scrollView = view.findViewById(R.id.scroler);
         productCategory = itemView.findViewById(R.id.quantity_prod);
         productHeight = itemView.findViewById(R.id.height);
         productName = itemView.findViewById(R.id.name_product);
@@ -83,7 +87,18 @@ public class ProductShow extends Fragment {
             getActivity().onBackPressed();
         edit_product = view.findViewById(R.id.edit_product);
         delete_product = view.findViewById(R.id.delete_product);
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int dyy, int oldScrollX, int dy) {
+                BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+                if (dy > 0 && bottom_navigation.isShown()) {
+                    bottom_navigation.setVisibility(View.GONE);
+                } else if (dy < 0) {
+                    bottom_navigation.setVisibility(View.VISIBLE);
 
+                }
+            }
+        });
 
         FirebaseFirestore.getInstance().collection("Products")
                 .document(ref).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -205,7 +220,7 @@ public class ProductShow extends Fragment {
     }
 
     public void setProductColors(List<String> productColorse) {
-        ColorsAdapter ada = new ColorsAdapter( productColorse,"");
+        ColorsAdapter ada = new ColorsAdapter(productColorse, "", "");
         productColors.setHasFixedSize(true);
         productColors.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         productColors.setAdapter(ada);

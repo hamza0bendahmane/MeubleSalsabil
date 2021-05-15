@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import com.createch.adminmeublessalsabil.Activity.Application;
 import com.createch.adminmeublessalsabil.Activity.Login;
 import com.createch.adminmeublessalsabil.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,7 +43,9 @@ public class    SettingsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View root, @Nullable Bundle savedInstanceState) {
-        // ((BottomNavigationView)getActivity().findViewById(R.id.nav_view)).setSelectedItemId(R.id.navigation_settings);
+        BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+        if (!bottom_navigation.isShown())
+            bottom_navigation.setVisibility(View.VISIBLE);
         fullName = root.findViewById(R.id.full_name);
         emailTextView = root.findViewById(R.id.email);
         phoneTextView = root.findViewById(R.id.phone);

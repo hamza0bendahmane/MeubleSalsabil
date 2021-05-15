@@ -117,7 +117,7 @@ public class EditCollection extends AppCompatActivity {
                 // image ....
 
                 // colors
-                colorsadapter = new ColorsAdapter(selected_colors,"remove");
+                colorsadapter = new ColorsAdapter(selected_colors, "remove", "");
                 colors_rec.setHasFixedSize(true);
                 colors_rec.setLayoutManager(new GridLayoutManager(getApplicationContext(),5));
                 colors_rec.setAdapter(adapter);

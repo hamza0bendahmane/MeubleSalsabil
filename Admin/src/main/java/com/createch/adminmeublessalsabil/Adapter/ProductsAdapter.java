@@ -3,6 +3,7 @@ package com.createch.adminmeublessalsabil.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.createch.adminmeublessalsabil.Activity.EditProduct;
+import com.createch.adminmeublessalsabil.Fragment.ProductShow;
 import com.createch.adminmeublessalsabil.Model.Item;
 import com.createch.adminmeublessalsabil.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -82,6 +86,20 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
                 ii.putExtra("ref", getSnapshots().getSnapshot(position).getId());
                 Log.d("hbhb", "onClick: " + getSnapshots().getSnapshot(position).getId());
                 context.startActivity(ii);
+            }
+        });
+        holder.itemView.findViewById(R.id.name_card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) context;
+                Bundle bundle = new Bundle();
+                bundle.putString("ref", getSnapshots().getSnapshot(position).getId());
+                bundle.putString("promotion", model.getPromotion());
+                Fragment fragment = new ProductShow();
+                fragment.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().
+                        replace(R.id.nav_host_fragment, fragment).addToBackStack("app")
+                        .commit();
             }
         });
     }
@@ -164,7 +182,7 @@ public class ProductsAdapter extends FirestoreRecyclerAdapter<Item, ProductsAdap
         }
 
         public void setProductColors(List<String> productColors) {
-            ColorsAdapter ada = new ColorsAdapter(productColors,"");
+            ColorsAdapter ada = new ColorsAdapter(productColors, "", "");
             this.productColors.setHasFixedSize(true);
             this.productColors.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             this.productColors.setAdapter(ada);

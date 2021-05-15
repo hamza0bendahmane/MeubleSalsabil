@@ -109,7 +109,7 @@ public class CollectionsAdapter  extends FirestoreRecyclerAdapter<Model, Collect
         }
 
         public void setcollectionColors(List<String> collectionColors) {
-            ColorsAdapter ada = new ColorsAdapter(collectionColors,"");
+            ColorsAdapter ada = new ColorsAdapter(collectionColors, "", "");
             this.collectionColors.setHasFixedSize(true);
             this.collectionColors.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             this.collectionColors.setAdapter(ada);

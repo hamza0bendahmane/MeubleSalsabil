@@ -2,7 +2,6 @@ package com.createch.meublessalsabil.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -51,7 +50,6 @@ public class Register extends AppCompatActivity {
 
     private final FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    SharedPreferences sharedPreferences;
     CallbackManager callbackManager;
     LoginButton loginButton;
     Activity activity;

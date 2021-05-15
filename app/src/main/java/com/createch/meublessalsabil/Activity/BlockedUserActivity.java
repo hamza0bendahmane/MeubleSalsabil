@@ -8,10 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.createch.meublessalsabil.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class BlockedUserActivity extends AppCompatActivity {
@@ -30,21 +34,28 @@ public class BlockedUserActivity extends AppCompatActivity {
         unblock = findViewById(R.id.unblock);
 
 
-        if (blockedByAdmin){
+        if (blockedByAdmin) {
             unblock.setText(R.string.send_objection);
 
-        }else
-        {
+        } else {
             sorry.setVisibility(View.GONE);
             unblock.setText(R.string.reactivate_account);
         }
+        FirebaseDatabase.getInstance().getReference("AdminInfos/").child("email").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    adminMail = task.getResult().getValue().toString();
+                }
+            }
+        });
         unblock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (blockedByAdmin){
+                if (blockedByAdmin) {
                     sendObjection();
-                }else{
-                Reactivate();
+                } else {
+                    Reactivate();
                 }
             }
         });
@@ -63,7 +74,10 @@ public class BlockedUserActivity extends AppCompatActivity {
                 .child("BlockedUsers").child(uid).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),R.string.succ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.succ, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(BlockedUserActivity.this, Home.class));
+                finish();
+
             }
         });
     }

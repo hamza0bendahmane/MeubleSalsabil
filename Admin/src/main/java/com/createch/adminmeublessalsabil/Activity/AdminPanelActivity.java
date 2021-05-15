@@ -1,11 +1,13 @@
 package com.createch.adminmeublessalsabil.Activity;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -17,11 +19,12 @@ import com.createch.adminmeublessalsabil.Fragment.UserFragment;
 import com.createch.adminmeublessalsabil.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 
 public class AdminPanelActivity extends AppCompatActivity {
     BottomNavigationView navView;
     SharedPreferences preferences;
-
 
 
     @Override
@@ -59,7 +62,7 @@ public class AdminPanelActivity extends AppCompatActivity {
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.nav_host_fragment, fragment)
+                    .replace(R.id.nav_host_fragment, fragment).addToBackStack("app")
                     .commit();
             return true;
         }
@@ -91,21 +94,57 @@ public class AdminPanelActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        int id = navView.getSelectedItemId();
-        if (id == R.id.idorders) {
-            navView.setSelectedItemId(R.id.idproducts);
 
-        } else if (id == R.id.idproducts) {
-            navView.setSelectedItemId(R.id.idusers);
+        getSupportFragmentManager().popBackStackImmediate();
 
-        } else if (id == R.id.idusers) {
-            navView.setSelectedItemId(R.id.idpanel);
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            Fragment selectedFragment = null;
+            List<Fragment> fragments = getSupportFragmentManager().getFragments();
+            for (Fragment fragment : fragments) {
+                if (fragment != null && fragment.isVisible()) {
+                    selectedFragment = fragment;
+                    break;
+                }
+            }
+            if (selectedFragment instanceof SettingsFragment) {
+                navView.setSelectedItemId(R.id.idsettings);
 
-        } else {
+            }
+            if (selectedFragment instanceof ProductsFragment) {
+                navView.setSelectedItemId(R.id.idproducts);
+
+            }
+            if (selectedFragment instanceof OrdersFragment) {
+                navView.setSelectedItemId(R.id.idorders);
+
+            }
+            if (selectedFragment instanceof UserFragment) {
+                navView.setSelectedItemId(R.id.idusers);
+
+            }
+            if (selectedFragment instanceof PanelFragment) {
+                existDialog();
+            }
+
+        } else if (getSupportFragmentManager().getBackStackEntryCount() == 1)
+            existDialog();
+        else {
             super.onBackPressed();
-
         }
+
+
     }
 
-
+    private void existDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 }

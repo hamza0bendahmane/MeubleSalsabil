@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.createch.adminmeublessalsabil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,10 +37,13 @@ public class PanelFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+        if (!bottom_navigation.isShown())
+            bottom_navigation.setVisibility(View.VISIBLE);
 
         waiting = view.findViewById(R.id.waiting_number);
         accepted = view.findViewById(R.id.accepted_number);
-         products = view.findViewById(R.id.products_number);
+        products = view.findViewById(R.id.products_number);
         users = view.findViewById(R.id.users_number);
 
 

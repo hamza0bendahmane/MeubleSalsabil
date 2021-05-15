@@ -143,7 +143,7 @@ public class OrderDetails extends Fragment {
                 thisOrder = documentSnapshot.toObject(Order.class);
                 order_id.setText(documentSnapshot.getId());
                 mapDate = thisOrder.getDate();
-                date.setText(((Timestamp) thisOrder.getDate().get(Order.WAITING)).toDate().toString());
+                date.setText(thisOrder.getDate().get(Order.WAITING).toDate().toString());
                 fillTheGenralInfos();
                 FirebaseFirestore.getInstance().collection("Users").document(documentSnapshot.get("userId").toString())
                         .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -370,7 +370,7 @@ public class OrderDetails extends Fragment {
         }
         else {
             AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
-            dialog.setMessage("Are u sure want mark getContext() order as delivered?");
+            dialog.setMessage("Are u sure want mark this order as delivered?");
             dialog.setButton(Dialog.BUTTON_POSITIVE, "Yes , Iam sure", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

@@ -137,7 +137,7 @@ public class EditProduct extends AppCompatActivity {
                         .override(100, 100) ;
                 Glide.with(getApplicationContext()).load(old_image_uri).apply(requestOptions).into(pro_pic);
                 // colors
-                adapter = new ColorsAdapter(selected_colors,"remove");
+                adapter = new ColorsAdapter(selected_colors, "remove", "");
                 colors.setHasFixedSize(true);
                 colors.setLayoutManager(new GridLayoutManager(getApplicationContext(),5));
                 colors.setAdapter(adapter);

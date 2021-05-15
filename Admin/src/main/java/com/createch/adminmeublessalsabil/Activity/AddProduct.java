@@ -1,8 +1,8 @@
 package com.createch.adminmeublessalsabil.Activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -21,16 +21,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.createch.adminmeublessalsabil.Adapter.ColorsAdapter;
 import com.createch.adminmeublessalsabil.Adapter.MaterialsAdapter;
 import com.createch.adminmeublessalsabil.R;
-import com.flask.colorpicker.ColorPickerView;
-import com.flask.colorpicker.OnColorSelectedListener;
-import com.flask.colorpicker.builder.ColorPickerClickListener;
-import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,18 +45,61 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AddProduct extends AppCompatActivity {
-        ColorsAdapter adapter ;
-    MaterialsAdapter ada ;
-    String theCategory = "" ;
-    List<String> selected_colors , selected_materials ;
-        Spinner  prodType;
-        MaterialButton addColor ,addMaterial,cancel , submit,addImage;
-        TextInputEditText length ,width,height , quantity,price,name;
-        RecyclerView colors ,materials ;
+    ColorsAdapter adapter;
+    MaterialsAdapter ada;
+    String theCategory = "";
+    List<String> selected_colors, selected_materials;
+    Spinner prodType;
+    MaterialButton addColor, addMaterial, cancel, submit, addImage;
+    TextInputEditText length, width, height, quantity, price, name;
+    RecyclerView colors, materials;
 
-            ImageView pro_pic;
-             String[] categories = {"طاولة","كرسي","باب","خزانة"};
-        private Uri image_uri = null;
+    ImageView pro_pic;
+    String[] categories = {"BUREAU SEMI METAL TYPE CIE",
+            "BUREAU TRAVAIL SEMI METAL",
+            "BUREAU A/RET SEMI METAL",
+            "FAUTEUIL DE RECEPTION (06 d'une place)",
+            "SALON DE RECEPTION",
+            "SALON 03 PIECES",
+            "SALON 04 PIECES",
+            "SALON 04 PIECES AVEC TABLE HG",
+            "SALON 04 PIECES EN CUIR",
+            "SALON 04 PLACES",
+            "SALON 05 PLACES",
+            "SALON 05 PLACES EN CUIR",
+            "SALON 07 PIECES",
+            "SALON 07 PLACES EN CUIR",
+            "SALLE A MANGER OS PLACES",
+            "ARMOIR DE RANGEMENT",
+            "ARMOIR DE BUREAU METALIQUE",
+            "ESTRADE DE TABLEAU",
+            "MEUBLE DE RANGEMENT CARTES",
+            "TV LCD 107 CM",
+            "PORTE MANTEAUX MURAL",
+            "TABLEAU MURAL A VOLETS",
+            "RAYONNAGE METALIQUE",
+            "TABLEAU BLANC",
+            "TABLEAU MURAL",
+            "TABLEAU MOBILE",
+            "TABLEAU MURAL BLANC",
+            "TABLE SCOLAIRE EN BM",
+            "TABLEAU MAGNETIQUE",
+            "TABLEAU PIVOTANT BLANC",
+            "TABLE DE DESSIN",
+            "CHAMBRE D'ENFANT",
+            "SALLE A MANGER",
+            "SALON 04 PIECES",
+            "TABLE DE SALON",
+            "SALON 03 PIECES AVEC TABLE",
+            "MEUBLE TV",
+            "LIE BEBE",
+            "CANAPE",
+            "TAPIS DE SALON",
+            "COUVRE LIT 01 PLACE",
+            "COUVREUT OZ PLACES ",
+            "COLLA CUAD CAMERA",
+            "OREILLE O2 PLACES"};
+    private Uri image_uri = null;
 
 
     @Override
@@ -70,9 +108,9 @@ public class AddProduct extends AppCompatActivity {
         setContentView(R.layout.activity_add_product);
 
         selected_colors = new ArrayList<String>();
-        selected_materials =new ArrayList<String>();
+        selected_materials = new ArrayList<String>();
 
-        adapter = new ColorsAdapter(selected_colors,"remove");
+        adapter = new ColorsAdapter(selected_colors, "remove", "");
 
         colors = findViewById(R.id.colors_picked);
         prodType = findViewById(R.id.spinner_categ);
@@ -101,7 +139,7 @@ public class AddProduct extends AppCompatActivity {
 
          ada = new MaterialsAdapter(this,selected_materials);
         materials.setHasFixedSize(true);
-        materials.setLayoutManager(new LinearLayoutManager(this));
+        materials.setLayoutManager(new GridLayoutManager(this, 3));
         materials.setAdapter(ada);
 
     }
@@ -328,7 +366,8 @@ public class AddProduct extends AppCompatActivity {
                 if (editText.getText().toString().trim().isEmpty())
                     editText.setError(getString(R.string.shouldnt_beempty));
                 else {
-                    selected_materials.add(editText.getText().toString().trim());
+                    if (!selected_materials.contains(editText.getText().toString().trim()))
+                        selected_materials.add(editText.getText().toString().trim());
                     ada.notifyDataSetChanged();
                     alertDialog.dismiss();
                 }
@@ -337,33 +376,44 @@ public class AddProduct extends AppCompatActivity {
 
     }
 
-    public void addColor(View vv){
+    public void addColor(View vv) {
 
-     //  AlertDialog dialog = new AlertDialog.Builder(this,R.layout.add_material_custom.xml).create();
-        ColorPickerDialogBuilder
-                .with(this)
-                .setTitle("Choose color")
-                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER).noSliders()
-                .setOnColorSelectedListener(new OnColorSelectedListener() {
-                    @Override
-                    public void onColorSelected(int selectedColor) {
-                    }
-                })
-                .setPositiveButton("ok", new ColorPickerClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                    //    changeBackgroundColor(selectedColor);
-                        String substring = Integer.toHexString(selectedColor);
-                        selected_colors.add("#"+ substring);
-                        adapter.notifyDataSetChanged();
-                    }
-                })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                })
-                .build()
-                .show();
+        //  AlertDialog dialog = new AlertDialog.Builder(this,R.layout.add_material_custom.xml).create();
+        Dialog d = new Dialog(this);
+        List<String> listOfColors = new ArrayList<>();
+        listOfColors.add("#DFFF00");
+        listOfColors.add("#FFBF00");
+        listOfColors.add("#FF7F50");
+        listOfColors.add("#FFFFFF");
+        listOfColors.add("#000000");
+        listOfColors.add("#DE3163");
+        listOfColors.add("#6495ED");
+        listOfColors.add("#40E0D0");
+        listOfColors.add("#FF0000");
+        listOfColors.add("#800000");
+        listOfColors.add("#800080");
+        d.setContentView(R.layout.colors_layout);
+        RecyclerView colors_recyc = d.findViewById(R.id.colors_recycler);
+        colors_recyc.setHasFixedSize(true);
+        colors_recyc.setLayoutManager(new GridLayoutManager(this, 5));
+        ColorsAdapter ad = new ColorsAdapter(listOfColors, "", "#ff0000");
+        colors_recyc.setAdapter(ad);
+        d.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!selected_colors.contains(ad.getColor()))
+                    selected_colors.add(ad.getColor());
+                adapter.notifyDataSetChanged();
+                d.dismiss();
+            }
+        });
+        d.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.dismiss();
+            }
+        });
+
+        d.show();
     }
 }

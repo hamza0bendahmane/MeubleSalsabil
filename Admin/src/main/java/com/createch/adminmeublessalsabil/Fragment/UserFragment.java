@@ -16,6 +16,7 @@ import com.createch.adminmeublessalsabil.Adapter.UsersAdapter;
 import com.createch.adminmeublessalsabil.Model.User;
 import com.createch.adminmeublessalsabil.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -32,6 +33,9 @@ public class UserFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottom_navigation = getActivity().findViewById(R.id.nav_view);
+        if (!bottom_navigation.isShown())
+            bottom_navigation.setVisibility(View.VISIBLE);
         setUpRecyclerView();
         SearchView ss = view.findViewById(R.id.simpleSearchView);
         view.findViewById(R.id.gotoaccepted).setOnClickListener(new View.OnClickListener() {
