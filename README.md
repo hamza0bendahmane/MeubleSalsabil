@@ -7,12 +7,12 @@
 ## "An Android E-commerce fURNITURE App Platform to sell and buy furnitures (one seller) " 
 
 
-the app was meant to be a freelance project but the client was a bustard & he broke his word and wasted more then 2 months of our poor team ... 
-check us : <a href="https://www.facebook.com/thecreatechdz">Createch Team </a>
+the app was meant to be a freelance project but the client was a bustard & he broke his word and wasted more then 2 months of our poor team ...  <br>
+check us : <a href="https://www.facebook.com/thecreatechdz">Createch Team </a> <br>
 so iam putting the project public and free flexing on him enjoy the project and don't forget to report that motherfucked from  : <a href="https://www.facebook.com/Meuble-Salsabbil-kol%C3%A9a-1011502015561101">here </a>
  ....
 
-<a href="https://github.com/hamza0bendahmane/SihatiMob/blob/master/app/src/main/SihatiMob.apk"><img src="https://github.com/hamza0bendahmane/ESIbetter/blob/master/index.png" height="75"></a> <br> <br>
+ <br> <br>
 
 ## The Demo & ScreenShoots : 
 
