@@ -1,7 +1,6 @@
 # Meubles Salsabil
-<img src="https://raw.githubusercontent.com/hamza0bendahmane/SihatiMob/master/app/src/main/res/drawable/logo_png.png" height="180"><br><br>
+<img src="logo.png" height="180"><br><br>
 
-<img src="https://www.esi.dz/wp-content/uploads/2021/04/ESI-Logo-BG.png" width="100"/>
 
 #
 
