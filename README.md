@@ -57,7 +57,7 @@ just inbox us on any of these e-mails :
 
 **Through Github**
 
-1. Download The app from  <a href="https://github.com/hamza0bendahmane/SihatiMob/blob/master/ap/src/main/SihatiMob.apk"> here </a>
+1. Build the app with Android Studio 
 2. Install the App ,Try It and Don't forget to hit us with any suggestions or Notes .
 
 **Through Play Sore**
