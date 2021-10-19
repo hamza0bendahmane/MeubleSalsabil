@@ -7,7 +7,7 @@
 ## "An Android E-commerce FURNITURE App to sell and buy furnitures (one seller) " 
 
 
-the app was meant to be a freelance project but the client was a bustard & he broke his word and wasted more then 2 months of our poor team ...
+the app was meant to be a freelance project but the client was a bustard & he broke his word and wasted more then 2 months of our poor team time...
 check us : <a href="https://www.facebook.com/thecreatechdz">Createch Team </a> <br>
 so iam putting the project public and free flexing on him enjoy the project and don't forget to report that motherfucked from  : <a href="https://www.facebook.com/Meuble-Salsabbil-kol%C3%A9a-1011502015561101">here </a>
 
